@@ -1,7 +1,6 @@
 {
   "extends": "./tsconfig.base.json",
   "compileOnSave": false,
-  "compilerOptions": { "strictPropertyInitialization": false },
   "files": [],
   "references": [
     {

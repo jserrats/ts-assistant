@@ -1,6 +1,6 @@
 import type { UUID } from "node:crypto";
-import type { TimerLength } from "../timer";
-import type { BooleanSensor } from "./sensor";
+import type { TimerLength } from "../timer.js";
+import type { BooleanSensor } from "./sensor.js";
 
 export interface Switch extends BooleanSensor {
 	get state(): boolean;

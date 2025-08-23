@@ -1,4 +1,4 @@
-import { RemoteZigbee } from "./base";
+import { RemoteZigbee } from "./base.js";
 
 /**
  * STYRBAR remote control
@@ -7,7 +7,7 @@ import { RemoteZigbee } from "./base";
  * https://www.zigbee2mqtt.io/devices/E2001_E2002.html#ikea-e2001%252Fe2002
  */
 export class RemoteE2002 extends RemoteZigbee {
-	public button = {
+	public override button = {
 		up: `on${this.remoteId}`,
 		down: `off${this.remoteId}`,
 		holdDown: `brightness_move_down${this.remoteId}`,
@@ -23,7 +23,7 @@ export class RemoteE2002 extends RemoteZigbee {
  * https://www.zigbee2mqtt.io/devices/E1812.html#ikea-e1812
  */
 export class RemoteE1812 extends RemoteZigbee {
-	public button = {
+	public override button = {
 		click: `on${this.remoteId}`,
 	};
 }
@@ -39,7 +39,7 @@ export class RemoteTS0044 extends RemoteZigbee {
 	// 1 | 2
 	//-------
 	// 3 | 4
-	public button = {
+	public override button = {
 		topLeftSingleClick: `1_single${this.remoteId}`,
 		topLeftDoubleClick: `1_double${this.remoteId}`,
 		topLeftHold: `1_hold${this.remoteId}`,
@@ -65,7 +65,7 @@ export class RemoteTS0044 extends RemoteZigbee {
  * https://www.zigbee2mqtt.io/devices/E2201.html#ikea-e2201
  */
 export class RemoteE2201 extends RemoteZigbee {
-	public button = {
+	public override button = {
 		topClick: `on${this.remoteId}`,
 		bottomClick: `off${this.remoteId}`,
 		holdTopClick: `brightness_move_up${this.remoteId}`,

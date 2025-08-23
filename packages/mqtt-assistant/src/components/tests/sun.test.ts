@@ -1,6 +1,6 @@
-import { client } from "../../mqtt";
-import { BASE_TOPIC } from "../../topics";
-import { Sun } from "../sun";
+import { client } from "../../mqtt.js";
+import { BASE_TOPIC } from "../../topics.js";
+import { Sun } from "../sun.js";
 jest.useFakeTimers();
 
 jest.mock("../../../src/mqtt", () => ({

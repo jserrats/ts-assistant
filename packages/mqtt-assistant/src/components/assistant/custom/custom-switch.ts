@@ -1,7 +1,7 @@
 import { MqttClient } from "mqtt/*";
-import { Switch } from "../../interfaces";
-import { BinaryMQTTSensor } from "../binary-sensor";
-import { BASE_TOPIC } from "../../../topics";
+import { Switch } from "../../interfaces/index.js";
+import { BinaryMQTTSensor } from "../binary-sensor.js";
+import { BASE_TOPIC } from "../../../topics.js";
 
 export class CustomSwitch extends BinaryMQTTSensor implements Switch {
     private logic: (state: boolean, mqtt: MqttClient) => void;

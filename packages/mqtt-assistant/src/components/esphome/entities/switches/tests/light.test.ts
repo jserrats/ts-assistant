@@ -1,7 +1,7 @@
-import { client } from "../../../../../mqtt";
-import { router } from "../../../../../router";
-import { ESPHOME_TOPIC } from "../../../../../topics";
-import { LightESPHome } from "../light";
+import { client } from "../../../../../mqtt.js";
+import { router } from "../../../../../router.js";
+import { ESPHOME_TOPIC } from "../../../../../topics.js";
+import { LightESPHome } from "../light.js";
 
 jest.mock("../../../../../mqtt", () => ({
 	client: {

@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
-import type { BooleanSensor } from "../interfaces/sensor";
-import { BaseMQTTSensor } from "./base";
+import type { BooleanSensor } from "../interfaces/sensor.js";
+import { BaseMQTTSensor } from "./base.js";
 
 export class BinaryMQTTSensor
 	extends BaseMQTTSensor<boolean>

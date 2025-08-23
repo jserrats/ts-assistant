@@ -1,6 +1,6 @@
-import { router } from "../../router";
-import { StatefulComponent } from "../component";
-import { globalEventManager } from "../component";
+import { router } from "../../router.js";
+import { StatefulComponent } from "../component.js";
+import { globalEventManager } from "../component.js";
 
 jest.mock("../../../src/mqtt", () => ({
 	client: {

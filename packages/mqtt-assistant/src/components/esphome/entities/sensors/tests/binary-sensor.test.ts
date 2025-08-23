@@ -1,10 +1,10 @@
-import { router } from "../../../../../router";
-import { ESPHOME_TOPIC } from "../../../../../topics";
+import { router } from "../../../../../router.js";
+import { ESPHOME_TOPIC } from "../../../../../topics.js";
 import {
 	type TestBooleanSensor,
 	testBooleanSensorFactory,
-} from "../../../../interfaces/tests/sensorTests";
-import { BinarySensorESPHome } from "../binary-sensor";
+} from "../../../../interfaces/tests/sensorTests.js";
+import { BinarySensorESPHome } from "../binary-sensor.js";
 
 jest.mock("../../../../../mqtt", () => ({
 	client: {

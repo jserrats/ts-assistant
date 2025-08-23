@@ -1,7 +1,7 @@
-import { client } from "../../mqtt";
-import { router } from "../../router";
-import { BASE_TOPIC } from "../../topics";
-import { Timer, secondsToHms } from "../timer";
+import { client } from "../../mqtt.js";
+import { router } from "../../router.js";
+import { BASE_TOPIC } from "../../topics.js";
+import { Timer, secondsToHms } from "../timer.js";
 
 jest.mock("../../../src/mqtt", () => ({
 	client: {

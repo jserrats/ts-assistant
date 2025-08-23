@@ -1,4 +1,4 @@
-import type { Switch } from "./switch";
+import type { Switch } from "./switch.js";
 
 export interface Light extends Switch {}
 

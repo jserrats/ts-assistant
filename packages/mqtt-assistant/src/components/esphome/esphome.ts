@@ -1,7 +1,7 @@
-import { router } from "../../router";
-import { ESPHOME_TOPIC } from "../../topics";
-import type { Trigger } from "../../types";
-import { Component, StatefulComponent } from "../component";
+import { router } from "../../router.js";
+import { ESPHOME_TOPIC } from "../../topics.js";
+import type { Trigger } from "../../types.js";
+import { Component, StatefulComponent } from "../component.js";
 
 interface ESPhomeDevice extends Component {
 	name: string;

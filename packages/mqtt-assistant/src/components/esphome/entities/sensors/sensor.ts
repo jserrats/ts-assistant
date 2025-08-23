@@ -1,5 +1,5 @@
-import type { NumericSensor } from "../../../interfaces/sensor";
-import { BaseESPHomeSensor } from "./base";
+import type { NumericSensor } from "../../../interfaces/sensor.js";
+import { BaseESPHomeSensor } from "./base.js";
 
 export class SensorESPHome
 	extends BaseESPHomeSensor<number>

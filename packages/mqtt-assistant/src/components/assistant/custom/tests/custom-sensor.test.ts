@@ -1,5 +1,5 @@
-import { StatefulComponent } from "../../../component";
-import { CustomSensor } from "../custom-sensor";
+import { StatefulComponent } from "../../../component.js";
+import { CustomSensor } from "../custom-sensor.js";
 
 jest.mock("../../../../mqtt", () => ({
 	client: {

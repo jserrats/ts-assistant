@@ -1,4 +1,4 @@
-import { StatelessESPHomeDevice } from "../esphome";
+import { StatelessESPHomeDevice } from "../esphome.js";
 
 export class ButtonESPHome extends StatelessESPHomeDevice {
 	constructor(name: string, component: string) {

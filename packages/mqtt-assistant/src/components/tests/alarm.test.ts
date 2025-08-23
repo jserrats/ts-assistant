@@ -1,9 +1,9 @@
-import { client } from "../../mqtt";
-import { router } from "../../router";
-import { Alarm } from "../alarm";
-import type { BinarySensorESPHome } from "../esphome/entities/sensors/binary-sensor";
-import { ClosureSensorZigbee } from "../zigbee/devices/sensors/base";
-import type { ExposesContact } from "../zigbee/exposes/exposes";
+import { client } from "../../mqtt.js";
+import { router } from "../../router.js";
+import { Alarm } from "../alarm.js";
+import type { BinarySensorESPHome } from "../esphome/entities/sensors/binary-sensor.js";
+import { ClosureSensorZigbee } from "../zigbee/devices/sensors/base.js";
+import type { ExposesContact } from "../zigbee/exposes/exposes.js";
 
 jest.mock("../../../src/mqtt", () => ({
 	client: {

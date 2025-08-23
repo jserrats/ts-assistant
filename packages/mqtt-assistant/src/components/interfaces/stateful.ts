@@ -1,5 +1,5 @@
 import type { UUID } from "node:crypto";
-import type { Eventful } from "./eventful";
+import type { Eventful } from "./eventful.js";
 
 export interface Stateful extends Eventful {
 	events: { state: UUID };

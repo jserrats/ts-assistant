@@ -1,11 +1,11 @@
-import { client } from "../../../../../mqtt";
-import { router } from "../../../../../router";
-import { ESPHOME_TOPIC } from "../../../../../topics";
-import { SwitchESPHome } from "../switch";
+import { client } from "../../../../../mqtt.js";
+import { router } from "../../../../../router.js";
+import { ESPHOME_TOPIC } from "../../../../../topics.js";
+import { SwitchESPHome } from "../switch.js";
 import {
 	type TestSwitch,
 	testSwitchFactory,
-} from "../../../../interfaces/tests/switchTests";
+} from "../../../../interfaces/tests/switchTests.js";
 
 jest.mock("../../../../../mqtt", () => ({
 	client: {

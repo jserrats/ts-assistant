@@ -1,8 +1,8 @@
 import { randomUUID } from "node:crypto";
-import { router } from "../router";
-import { BASE_TOPIC } from "../topics";
-import type { Trigger } from "../types";
-import { Component } from "./component";
+import { router } from "../router.js";
+import { BASE_TOPIC } from "../topics.js";
+import type { Trigger } from "../types.js";
+import { Component } from "./component.js";
 
 export class Timer extends Component {
 	private timeoutID: NodeJS.Timeout = setTimeout(() => {});

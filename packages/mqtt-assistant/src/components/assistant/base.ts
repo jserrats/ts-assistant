@@ -1,7 +1,7 @@
-import { router } from "../../router";
-import { BASE_TOPIC } from "../../topics";
-import type { Trigger } from "../../types";
-import { StatefulComponent } from "../component";
+import { router } from "../../router.js";
+import { BASE_TOPIC } from "../../topics.js";
+import type { Trigger } from "../../types.js";
+import { StatefulComponent } from "../component.js";
 
 export class BaseMQTTSensor<
 	T extends boolean | string | number,

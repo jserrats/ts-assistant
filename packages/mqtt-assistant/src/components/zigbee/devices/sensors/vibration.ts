@@ -1,4 +1,4 @@
-import { VibrationSensorsZigbee } from "./base";
+import { VibrationSensorsZigbee } from "./base.js";
 
 /**
  * Vibration sensor

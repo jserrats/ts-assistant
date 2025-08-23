@@ -1,5 +1,5 @@
 import { getSunrise, getSunset } from "sunrise-sunset-js";
-import { Component } from "./component";
+import { Component } from "./component.js";
 
 export class Sun extends Component {
 	nextSunrise: Date;

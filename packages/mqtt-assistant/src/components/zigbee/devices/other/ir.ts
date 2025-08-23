@@ -1,5 +1,5 @@
-import { StatelessZigbeeDevice } from "../../zigbee";
-import { exposes } from "../../exposes";
+import { StatelessZigbeeDevice } from "../../zigbee.js";
+import { exposes } from "../../exposes/index.js";
 
 /**
  * Tuya iH-F8260

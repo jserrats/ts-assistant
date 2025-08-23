@@ -1,6 +1,6 @@
-import { client } from "../../../../mqtt";
-import { ESPHOME_TOPIC } from "../../../../topics";
-import { ButtonESPHome } from "../button";
+import { client } from "../../../../mqtt.js";
+import { ESPHOME_TOPIC } from "../../../../topics.js";
+import { ButtonESPHome } from "../button.js";
 
 jest.mock("../../../../mqtt", () => ({
 	client: {

@@ -1,6 +1,6 @@
-import { router } from "../../../../../router";
-import { globalEventManager } from "../../../../component";
-import { RemoteE1812, RemoteE2002 } from "../remotes";
+import { router } from "../../../../../router.js";
+import { globalEventManager } from "../../../../component.js";
+import { RemoteE1812, RemoteE2002 } from "../remotes.js";
 
 jest.mock("../../../../../mqtt", () => ({
 	client: {

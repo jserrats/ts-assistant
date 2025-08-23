@@ -1,5 +1,5 @@
-export * as remotes from "./remotes/remotes";
-export * as switches from "./switches/switches";
-export * as lights from "./switches/lights";
-export * as sensors from "./sensors";
-export * as other from "./other/ir";
+export * as remotes from "./remotes/remotes.js";
+export * as switches from "./switches/switches.js";
+export * as lights from "./switches/lights.js";
+export * as sensors from "./sensors/index.js";
+export * as other from "./other/ir.js";

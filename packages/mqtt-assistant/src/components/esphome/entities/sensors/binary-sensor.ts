@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
-import type { BooleanSensor } from "../../../interfaces/sensor";
-import { BaseESPHomeSensor } from "./base";
+import type { BooleanSensor } from "../../../interfaces/sensor.js";
+import { BaseESPHomeSensor } from "./base.js";
 
 export class BinarySensorESPHome
 	extends BaseESPHomeSensor<boolean>

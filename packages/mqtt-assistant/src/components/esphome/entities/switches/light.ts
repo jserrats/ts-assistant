@@ -1,5 +1,5 @@
-import type { Light } from "../../../interfaces/light";
-import { BaseSwitchESPHome } from "./base";
+import type { Light } from "../../../interfaces/light.js";
+import { BaseSwitchESPHome } from "./base.js";
 
 export class LightESPHome extends BaseSwitchESPHome implements Light {
 	constructor(name: string, component: string) {
@@ -7,7 +7,7 @@ export class LightESPHome extends BaseSwitchESPHome implements Light {
 		this.commandTopic = `${this.baseTopic}/light/${component}/command`;
 	}
 
-	protected set(order: boolean | "toggle") {
+	protected override set(order: boolean | "toggle") {
 		let text_order: string;
 		if (typeof order === "boolean") {
 			text_order = order ? "ON" : "OFF";

@@ -3,10 +3,10 @@ import type {
 	BrightLight,
 	Light,
 	TemperatureLight,
-} from "../../../interfaces/light";
-import type { Switch } from "../../../interfaces/switch";
-import { exposes } from "../../exposes";
-import { StatefulZigbeeDevice } from "../../zigbee";
+} from "../../../interfaces/light.js";
+import type { Switch } from "../../../interfaces/switch.js";
+import { exposes } from "../../exposes/index.js";
+import { StatefulZigbeeDevice } from "../../zigbee.js";
 
 export class SwitchZigbee
 	extends StatefulZigbeeDevice<boolean>

@@ -1,4 +1,4 @@
-import { Switch } from "../switch";
+import { Switch } from "../switch.js";
 
 export interface TestSwitch extends Switch {
     mockStateUpdate(value: boolean): void;

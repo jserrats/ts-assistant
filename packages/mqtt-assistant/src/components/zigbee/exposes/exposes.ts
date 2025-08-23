@@ -3,12 +3,12 @@ import {
 	ExposesNumber,
 	ExposesSeteableNumber,
 	ExposesString,
-} from "./base";
+} from "./base.js";
 
 export class ExposesSwitch extends ExposesBoolean {
-	static exposes = "state";
+	static override exposes = "state";
 
-	_updateExposes(message: Object, exposeName?: string): boolean {
+	override _updateExposes(message: Object, exposeName?: string): boolean {
 		let tmp: boolean;
 		if (exposeName == undefined) {
 			exposeName = ExposesSwitch.exposes; //state
@@ -25,68 +25,68 @@ export class ExposesSwitch extends ExposesBoolean {
 }
 
 export class ExposesAction extends ExposesString {
-	static exposes = "action";
+	static override exposes = "action";
 }
 
 export class ExposesLinkQuality extends ExposesNumber {
-	static exposes = "linkquality";
-	public unit = "LQI";
+	static override exposes = "linkquality";
+	public override unit = "LQI";
 }
 
 export class ExposesBrightness extends ExposesSeteableNumber {
-	static exposes = "brightness";
+	static override exposes = "brightness";
 	static unit = "%";
 }
 
 export class ExposesColorTemperature extends ExposesSeteableNumber {
-	static exposes = "color_temp";
+	static override exposes = "color_temp";
 }
 
 export class ExposesTemperature extends ExposesNumber {
-	static exposes = "temperature";
-	public unit = "°C";
+	static override exposes = "temperature";
+	public override unit = "°C";
 }
 
 export class ExposesHumidity extends ExposesNumber {
-	static exposes = "humidity";
-	public unit = "%";
+	static override exposes = "humidity";
+	public override unit = "%";
 }
 
 export class ExposesCurrent extends ExposesNumber {
-	static exposes = "current";
-	public unit = "A";
+	static override exposes = "current";
+	public override unit = "A";
 }
 
 export class ExposesPower extends ExposesNumber {
-	static exposes = "power";
-	public unit = "W";
+	static override exposes = "power";
+	public override unit = "W";
 }
 
 export class ExposesVoltage extends ExposesNumber {
-	static exposes = "voltage";
-	public unit = "V";
+	static override exposes = "voltage";
+	public override unit = "V";
 }
 
 export class ExposesOccupancy extends ExposesBoolean {
-	static exposes = "occupancy";
+	static override exposes = "occupancy";
 }
 
 export class ExposesVibration extends ExposesBoolean {
-	static exposes = "vibration";
+	static override exposes = "vibration";
 }
 
 export class ExposesContact extends ExposesBoolean {
-	static exposes = "contact";
+	static override exposes = "contact";
 	private inverted = false;
 
-	constructor(parentDevice, inverted?) {
+	constructor(parentDevice, inverted?: boolean) {
 		super(parentDevice);
 		if (inverted !== undefined) {
 			this.inverted = inverted;
 		}
 	}
 
-	_updateExposes(message: Object): void {
+	override _updateExposes(message: Object): void {
 		let tmp: boolean;
 		if (this.inverted) {
 			tmp = !message[ExposesContact.exposes];
@@ -98,17 +98,17 @@ export class ExposesContact extends ExposesBoolean {
 }
 
 export class ExposesLearnIrCode extends ExposesSwitch {
-	static exposes = "learn_ir_code";
+	static override exposes = "learn_ir_code";
 
-	_updateExposes(message: Object): boolean {
+	override _updateExposes(message: Object): boolean {
 		return super._updateExposes(message, ExposesLearnIrCode.exposes);
 	}
 }
 
 export class ExposesIrCodeToSend extends ExposesString {
-	static exposes = "ir_code_to_send";
+	static override exposes = "ir_code_to_send";
 }
 
 export class ExposesLearnedIrCode extends ExposesString {
-	static exposes = "learned_ir_code";
+	static override exposes = "learned_ir_code";
 }

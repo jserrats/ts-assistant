@@ -1,13 +1,13 @@
 import { randomUUID } from "node:crypto";
-import { StatefulComponent } from "../../component";
+import { StatefulComponent } from "../../component.js";
 import type {
 	BooleanSensor,
 	NumericSensor,
 	StringSensor,
-} from "../../interfaces/sensor";
-import { telegram } from "../../telegram";
-import type { SwitchZigbee } from "../devices/switches/base";
-import type { ZigbeeDevice } from "../zigbee";
+} from "../../interfaces/sensor.js";
+import { telegram } from "../../telegram/index.js";
+import type { SwitchZigbee } from "../devices/switches/base.js";
+import type { ZigbeeDevice } from "../zigbee.js";
 
 export class ExposesZigbee<
 	T extends boolean | number | string,

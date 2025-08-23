@@ -1,6 +1,6 @@
-import { client } from "../../../../../mqtt";
-import { router } from "../../../../../router";
-import { IriHF8260 } from "../ir";
+import { client } from "../../../../../mqtt.js";
+import { router } from "../../../../../router.js";
+import { IriHF8260 } from "../ir.js";
 
 jest.mock("../../../../../mqtt", () => ({
 	client: {

@@ -1,5 +1,5 @@
-import type { StatefulComponent } from "../../component";
-import { BaseMQTTSensor } from "../base";
+import type { StatefulComponent } from "../../component.js";
+import { BaseMQTTSensor } from "../base.js";
 
 export class CustomSensor<
 	Type extends number | string | boolean,

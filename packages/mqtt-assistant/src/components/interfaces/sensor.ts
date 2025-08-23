@@ -1,5 +1,5 @@
 import type { UUID } from "node:crypto";
-import type { Stateful } from "./stateful";
+import type { Stateful } from "./stateful.js";
 
 export interface NumericSensor extends Stateful {
 	get state(): number;

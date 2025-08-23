@@ -1,6 +1,6 @@
-import { router } from "../../../router";
-import { BASE_TOPIC } from "../../../topics";
-import { BinaryMQTTSensor } from "../binary-sensor";
+import { router } from "../../../router.js";
+import { BASE_TOPIC } from "../../../topics.js";
+import { BinaryMQTTSensor } from "../binary-sensor.js";
 
 jest.mock("../../../mqtt", () => ({
 	client: {

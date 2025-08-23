@@ -1,4 +1,4 @@
-import { BaseSwitchESPHome } from "./base";
+import { BaseSwitchESPHome } from "./base.js";
 
 export class SwitchESPHome extends BaseSwitchESPHome {
 	constructor(name: string, component: string) {

@@ -3,16 +3,16 @@ import {
 	ExposesOccupancy,
 	ExposesSwitch,
 	ExposesTemperature,
-} from "../exposes";
+} from "../exposes.js";
 
-import { router } from "../../../../router";
+import { router } from "../../../../router.js";
 import {
 	type TestBooleanSensor,
 	type TestNumericSensor,
 	testBooleanSensorFactory,
 	testNumericSensorFactory,
-} from "../../../interfaces/tests/sensorTests";
-import { ExposesBoolean, ExposesNumber, ExposesString } from "../base";
+} from "../../../interfaces/tests/sensorTests.js";
+import { ExposesBoolean, ExposesNumber, ExposesString } from "../base.js";
 
 jest.mock("../../../../mqtt", () => ({
 	client: {

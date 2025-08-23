@@ -1,7 +1,6 @@
 import axios, { type AxiosInstance } from "axios";
-import { getEnvVariable } from "../environment";
-import { BASE_TOPIC } from "../topics";
-import { Component } from "./component";
+import { getEnvVariable } from "../environment.js";
+import { Component } from "./component.js";
 
 export class Weather extends Component {
 	private location: { latitude: number; longitude: number };

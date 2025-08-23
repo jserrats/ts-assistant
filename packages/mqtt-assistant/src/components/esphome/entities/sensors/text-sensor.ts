@@ -1,5 +1,5 @@
-import type { StringSensor } from "../../../interfaces/sensor";
-import { BaseESPHomeSensor } from "./base";
+import type { StringSensor } from "../../../interfaces/sensor.js";
+import { BaseESPHomeSensor } from "./base.js";
 
 //TODO: test this
 export class TextSensorESPHome

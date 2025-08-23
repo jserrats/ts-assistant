@@ -1,5 +1,5 @@
-import { exposes } from "../../exposes";
-import { BrightLightZigbee, TemperatureLightZigbee } from "./base";
+import { exposes } from "../../exposes/index.js";
+import { BrightLightZigbee, TemperatureLightZigbee } from "./base.js";
 
 /**
  * TRADFRI bulb E26/27, white spectrum, globe, opal, 1055/1100/1160 lm

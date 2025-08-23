@@ -1,4 +1,4 @@
-import type { BooleanSensor, NumericSensor } from "../sensor";
+import type { BooleanSensor, NumericSensor } from "../sensor.js";
 
 export interface TestBooleanSensor extends BooleanSensor {
 	mockStateUpdate(value: boolean): void;

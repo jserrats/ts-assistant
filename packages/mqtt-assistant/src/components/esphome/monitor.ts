@@ -1,8 +1,8 @@
-import { router } from "../../router";
-import { ESPHOME_TOPIC } from "../../topics";
-import type { Trigger } from "../../types";
-import { Component } from "../component";
-import { telegram } from "../telegram";
+import { router } from "../../router.js";
+import { ESPHOME_TOPIC } from "../../topics.js";
+import type { Trigger } from "../../types.js";
+import { Component } from "../component.js";
+import { telegram } from "../telegram/index.js";
 
 export class MonitorESPHome extends Component {
 	offlineDevices: string[] = [];

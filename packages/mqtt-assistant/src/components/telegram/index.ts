@@ -1,7 +1,6 @@
-import type { LogLevel, TelegramMessage } from "./types";
+import type { LogLevel, TelegramMessage } from "./types.js";
 const { dirname } = require("node:path");
-import { client } from "../../mqtt";
-import mqtt from "mqtt/*";
+import { client } from "../../mqtt.js";
 
 
 class Telegram {

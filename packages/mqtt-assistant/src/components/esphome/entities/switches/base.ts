@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
-import type { Switch } from "../../../interfaces/switch";
-import { BaseESPHomeSensor } from "../sensors/base";
+import type { Switch } from "../../../interfaces/switch.js";
+import { BaseESPHomeSensor } from "../sensors/base.js";
 
 export class BaseSwitchESPHome
 	extends BaseESPHomeSensor<boolean>
@@ -27,7 +27,7 @@ export class BaseSwitchESPHome
 
 	protected set(order: boolean | "toggle") {}
 
-	protected updateComponent(message: string) {
+	protected override updateComponent(message: string) {
 		let state: boolean;
 		try {
 			state = JSON.parse(message).state === "ON";

@@ -1,5 +1,5 @@
-import { exposes } from "../../exposes";
-import { SwitchZigbee } from "./base";
+import { exposes } from "../../exposes/index.js";
+import { SwitchZigbee } from "./base.js";
 
 /**
  * TRADFRI control outlet
