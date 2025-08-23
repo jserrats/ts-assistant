@@ -1,6 +1,17 @@
 {
   "extends": "./tsconfig.base.json",
   "compileOnSave": false,
+  "compilerOptions": { "strictPropertyInitialization": false },
   "files": [],
-  "references": []
+  "references": [
+    {
+      "path": "./packages/mqtt-assistant"
+    },
+    {
+      "path": "./apps/ts-automations-e2e"
+    },
+    {
+      "path": "./apps/ts-automations"
+    }
+  ]
 }
