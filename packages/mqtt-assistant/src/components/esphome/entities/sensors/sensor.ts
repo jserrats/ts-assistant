@@ -12,7 +12,7 @@ export class SensorESPHome
 		this.unit = unit;
 	}
 
-	protected updateComponent(message: string) {
+	protected override updateComponent(message: string) {
 		if (this.state === undefined || this.state !== Number(message)) {
 			this.state = Number(message);
 			super.updateComponent(message);

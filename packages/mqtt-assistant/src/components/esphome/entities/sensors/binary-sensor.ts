@@ -6,7 +6,7 @@ export class BinarySensorESPHome
 	extends BaseESPHomeSensor<boolean>
 	implements BooleanSensor
 {
-	public events = {
+	public override events = {
 		/** Emitted when the state property of the object is updated
 		 */
 		state: randomUUID(),
@@ -29,7 +29,7 @@ export class BinarySensorESPHome
 		});
 	}
 
-	protected updateComponent(message: string) {
+	protected override updateComponent(message: string) {
 		if (this.state === undefined || this.state !== (message === "ON")) {
 			this.state = message === "ON";
 			super.updateComponent(message);

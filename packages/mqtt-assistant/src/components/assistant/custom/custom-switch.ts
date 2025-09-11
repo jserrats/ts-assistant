@@ -1,4 +1,4 @@
-import { MqttClient } from "mqtt/*";
+import { MqttClient } from "mqtt";
 import { Switch } from "../../interfaces/index.js";
 import { BinaryMQTTSensor } from "../binary-sensor.js";
 import { BASE_TOPIC } from "../../../topics.js";

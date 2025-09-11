@@ -56,12 +56,12 @@ class GlobalEventManager {
 
 export const globalEventManager = new GlobalEventManager();
 
-export class StatefulComponent<T extends string | number | boolean>
+export class StatefulComponent<T extends string | number | boolean | undefined>
 	extends Component
 	implements Stateful
 {
 	private _state: T;
-	public events = {
+	public override events = {
 		/** Emitted when the state property of the object is updated
 		 */
 		state: randomUUID(),

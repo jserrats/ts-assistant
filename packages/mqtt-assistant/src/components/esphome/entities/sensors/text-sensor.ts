@@ -10,7 +10,7 @@ export class TextSensorESPHome
 		super(name, component, "text_sensor");
 	}
 
-	protected updateComponent(message: string) {
+	protected override updateComponent(message: string) {
 		if (this.state === undefined || this.state !== message) {
 			this.state = message;
 			super.updateComponent(message);

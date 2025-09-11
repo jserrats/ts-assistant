@@ -3,5 +3,5 @@ import type { Eventful } from "./eventful.js";
 
 export interface Stateful extends Eventful {
 	events: { state: UUID };
-	get state(): boolean | number | string;
+	get state(): boolean | number | string | undefined;
 }

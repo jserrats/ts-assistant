@@ -5,7 +5,7 @@ import type { Trigger } from "../../types.js";
 import { Component, StatefulComponent } from "../component.js";
 import type { Eventful } from "../interfaces/eventful.js";
 import { exposes } from "./exposes/index.js";
-import { ExposesZigbee } from "./exposes/base.js";
+import { ExposesNumber, ExposesZigbee } from "./exposes/base.js";
 
 const zigbeeDeviceConstructor = (device: ZigbeeDevice, name: string) => {
 	device.name = name;
@@ -40,7 +40,7 @@ export interface ZigbeeDevice extends Eventful {
 export class StatelessZigbeeDevice extends Component implements ZigbeeDevice {
 	topic: string;
 	name: string;
-	linkquality = new exposes.ExposesLinkQuality(this);
+	linkquality: ExposesNumber = new exposes.ExposesLinkQuality(this);
 
 	constructor(name: string) {
 		super();
@@ -80,13 +80,12 @@ export class StatelessZigbeeDevice extends Component implements ZigbeeDevice {
 	}
 }
 
-export class StatefulZigbeeDevice<T extends string | number | boolean>
+export class StatefulZigbeeDevice<T extends string | number | boolean | undefined>
 	extends StatefulComponent<T>
-	implements ZigbeeDevice
-{
+	implements ZigbeeDevice {
 	topic: string;
 	name: string;
-	linkquality = new exposes.ExposesLinkQuality(this);
+	linkquality: ExposesNumber = new exposes.ExposesLinkQuality(this);
 	private offline_state: T;
 
 	constructor(name: string) {

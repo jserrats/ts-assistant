@@ -18,5 +18,8 @@
   "dependencies": {
     "@types/jest": "^30.0.0",
     "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0"
   }
 }

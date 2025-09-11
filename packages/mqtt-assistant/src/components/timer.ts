@@ -11,7 +11,7 @@ export class Timer extends Component {
 	private seconds = 0;
 	private publishTopic: string;
 	public isRunning = false;
-	public events = {
+	public override events = {
 		timeout: randomUUID(),
 		cancel: randomUUID(),
 	};

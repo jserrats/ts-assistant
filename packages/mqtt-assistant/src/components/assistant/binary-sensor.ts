@@ -6,7 +6,7 @@ export class BinaryMQTTSensor
 	extends BaseMQTTSensor<boolean>
 	implements BooleanSensor
 {
-	public events = {
+	public override events = {
 		/** Emitted when the state property of the object is updated
 		 */
 		state: randomUUID(),
@@ -28,7 +28,7 @@ export class BinaryMQTTSensor
 			}
 		});
 	}
-	updateComponent(message: string) {
+	override updateComponent(message: string) {
 		if (this.state !== (message === "ON")) {
 			this.state = message === "ON";
 			super.updateComponent(message);

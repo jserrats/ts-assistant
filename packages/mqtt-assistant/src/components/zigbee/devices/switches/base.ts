@@ -14,7 +14,7 @@ export class SwitchZigbee
 {
 	setTopic = `${this.topic}/set`;
 	protected switch = new exposes.ExposesSwitch(this);
-	public events = {
+	public override events = {
 		state: randomUUID(),
 		on: randomUUID(),
 		off: randomUUID(),

@@ -7,7 +7,7 @@ export class BaseSwitchESPHome
 	implements Switch
 {
 	commandTopic: string;
-	public events = {
+	public override events = {
 		state: randomUUID(),
 		on: randomUUID(),
 		off: randomUUID(),

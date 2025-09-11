@@ -6,7 +6,7 @@ export class SwitchESPHome extends BaseSwitchESPHome {
 		this.commandTopic = `${this.baseTopic}/switch/${component}/command`;
 	}
 
-	protected set(order: boolean | "toggle") {
+	protected override set(order: boolean | "toggle") {
 		let text_order: string;
 		if (typeof order === "boolean") {
 			text_order = order ? "ON" : "OFF";

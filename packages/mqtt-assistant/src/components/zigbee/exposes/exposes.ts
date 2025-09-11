@@ -1,3 +1,4 @@
+import { ZigbeeDevice } from "../zigbee.js";
 import {
 	ExposesBoolean,
 	ExposesNumber,
@@ -8,7 +9,7 @@ import {
 export class ExposesSwitch extends ExposesBoolean {
 	static override exposes = "state";
 
-	override _updateExposes(message: Object, exposeName?: string): boolean {
+	override _updateExposes(message: Record<string, string>, exposeName?: string): boolean {
 		let tmp: boolean;
 		if (exposeName == undefined) {
 			exposeName = ExposesSwitch.exposes; //state
@@ -16,9 +17,10 @@ export class ExposesSwitch extends ExposesBoolean {
 
 		if (message[exposeName] !== undefined) {
 			tmp = message[exposeName] === "ON";
-		}
-		if (this.state === undefined || tmp !== this.state) {
-			this.state = tmp;
+
+			if (this.state === undefined || tmp !== this.state) {
+				this.state = tmp;
+			}
 		}
 		return this.state;
 	}
@@ -79,14 +81,14 @@ export class ExposesContact extends ExposesBoolean {
 	static override exposes = "contact";
 	private inverted = false;
 
-	constructor(parentDevice, inverted?: boolean) {
+	constructor(parentDevice: ZigbeeDevice, inverted?: boolean) {
 		super(parentDevice);
 		if (inverted !== undefined) {
 			this.inverted = inverted;
 		}
 	}
 
-	override _updateExposes(message: Object): void {
+	override _updateExposes(message: Record<string, boolean>): void {
 		let tmp: boolean;
 		if (this.inverted) {
 			tmp = !message[ExposesContact.exposes];
@@ -100,7 +102,7 @@ export class ExposesContact extends ExposesBoolean {
 export class ExposesLearnIrCode extends ExposesSwitch {
 	static override exposes = "learn_ir_code";
 
-	override _updateExposes(message: Object): boolean {
+	override _updateExposes(message: Record<string,string>): boolean {
 		return super._updateExposes(message, ExposesLearnIrCode.exposes);
 	}
 }
