@@ -7,9 +7,6 @@
       "path": "./packages/mqtt-assistant"
     },
     {
-      "path": "./apps/ts-automations-e2e"
-    },
-    {
       "path": "./apps/ts-automations"
     }
   ]
