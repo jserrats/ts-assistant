@@ -9,6 +9,7 @@ on:
   pull_request:
     paths:
       - 'apps/ts-automations/**'
+  workflow_dispatch:
 
 permissions:
   actions: read
