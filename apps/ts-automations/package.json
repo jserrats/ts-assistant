@@ -16,7 +16,8 @@
           "format": [
             "cjs"
           ],
-          "bundle": false,
+          "bundle": true,
+          "thirdParty":true,
           "main": "apps/ts-automations/src/main.ts",
           "tsConfig": "apps/ts-automations/tsconfig.app.json",
           "assets": [
