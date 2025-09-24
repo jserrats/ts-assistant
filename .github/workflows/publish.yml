@@ -8,6 +8,13 @@ on:
         required: true
         type: string
 
+  workflow_call:
+    inputs:
+      app:
+        description: 'Nx app name (e.g. ts-automations)'
+        required: true
+        type: string
+
 permissions:
   actions: read
   contents: read
