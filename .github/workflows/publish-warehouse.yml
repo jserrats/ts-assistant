@@ -1,0 +1,18 @@
+name: publish-warehouse
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'apps/ts-warehouse/**'
+  pull_request:
+    paths:
+      - 'apps/ts-warehouse/**'
+
+jobs:
+  publish:
+    uses: ./.github/workflows/publish.yml
+    with:
+      APP: ts-warehouse
