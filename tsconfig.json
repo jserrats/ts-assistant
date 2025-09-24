@@ -8,6 +8,9 @@
     },
     {
       "path": "./apps/ts-automations"
+    },
+    {
+      "path": "./apps/ts-warehouse"
     }
   ]
 }
