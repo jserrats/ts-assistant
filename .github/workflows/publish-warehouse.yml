@@ -11,8 +11,13 @@ on:
     paths:
       - 'apps/ts-warehouse/**'
 
+permissions:
+  actions: read
+  contents: read
+  packages: write
+
 jobs:
   publish:
     uses: ./.github/workflows/publish.yml
     with:
-      APP: ts-warehouse
+      app: ts-warehouse
