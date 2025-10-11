@@ -1,4 +1,5 @@
 import type { BooleanSensor, NumericSensor } from "../sensor.js";
+import { describe, it, expect, beforeEach, jest } from '@jest/globals';
 
 export interface TestBooleanSensor extends BooleanSensor {
 	mockStateUpdate(value: boolean): void;

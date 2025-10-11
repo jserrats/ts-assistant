@@ -3,7 +3,7 @@ import { ESPHOME_TOPIC } from "../../../../../topics.js";
 import {
 	type TestNumericSensor,
 	testNumericSensorFactory,
-} from "../../../../interfaces/tests/sensorTests.js";
+} from "../../../../interfaces/tests/sensor.js";
 import { SensorESPHome } from "../sensor.js";
 
 jest.mock("../../../../../mqtt", () => ({

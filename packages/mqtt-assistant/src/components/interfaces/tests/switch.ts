@@ -1,4 +1,5 @@
 import { Switch } from "../switch.js";
+import { describe, it, expect, beforeEach, jest } from '@jest/globals';
 
 export interface TestSwitch extends Switch {
     mockStateUpdate(value: boolean): void;

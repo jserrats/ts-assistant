@@ -11,7 +11,7 @@ import {
 	type TestNumericSensor,
 	testBooleanSensorFactory,
 	testNumericSensorFactory,
-} from "../../../interfaces/tests/sensorTests.js";
+} from "../../../interfaces/tests/sensor.js";
 import { ExposesBoolean, ExposesNumber, ExposesString } from "../base.js";
 
 jest.mock("../../../../mqtt", () => ({

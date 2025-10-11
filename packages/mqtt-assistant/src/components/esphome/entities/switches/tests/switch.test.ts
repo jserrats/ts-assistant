@@ -5,7 +5,7 @@ import { SwitchESPHome } from "../switch.js";
 import {
 	type TestSwitch,
 	testSwitchFactory,
-} from "../../../../interfaces/tests/switchTests.js";
+} from "../../../../interfaces/tests/switch.js";
 
 jest.mock("../../../../../mqtt", () => ({
 	client: {

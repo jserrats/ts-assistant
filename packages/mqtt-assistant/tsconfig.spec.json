@@ -10,7 +10,7 @@
     "src/**/*.test.ts",
     "src/**/*.spec.ts",
     "src/**/*.d.ts"
-  ],
+, "src/components/interfaces/tests/sensor.ts", "src/components/interfaces/tests/switch.ts"  ],
   "references": [
     {
       "path": "./tsconfig.lib.json"
