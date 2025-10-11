@@ -1,4 +1,3 @@
-import 'dotenv/config'
 import { zigbee, esphome, telegram } from "@ts-assistant/mqtt-assistant"
 import { FloatConveyor } from './conveyors'
 

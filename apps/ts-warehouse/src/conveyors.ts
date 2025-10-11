@@ -1,8 +1,6 @@
 import { globalEventManager } from "@ts-assistant/mqtt-assistant";
 import { InfluxDB, Point } from '@influxdata/influxdb-client'
 import { getEnvVariable } from "@ts-assistant/mqtt-assistant"
-
-import 'dotenv/config'
 import { interfaces } from "@ts-assistant/mqtt-assistant";
 
 
