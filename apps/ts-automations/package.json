@@ -14,7 +14,7 @@
           "platform": "node",
           "outputPath": "apps/ts-automations/dist",
           "format": [
-            "cjs"
+            "esm"
           ],
           "bundle": true,
           "thirdParty":true,
