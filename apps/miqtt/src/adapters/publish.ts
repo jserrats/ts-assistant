@@ -11,8 +11,8 @@ export class PublishMqttAdapter {
 	) {
 		this.pad = padXY;
 		this.launchpad = launchpad;
-		launchpad.addCallback(padXY, (pressed) => {
-			if (!pressed) {
+		launchpad.addCallback(padXY, {
+			click: () => {
 				mqttClient.publish(mqtt.topic, mqtt.payload);
 			}
 		});

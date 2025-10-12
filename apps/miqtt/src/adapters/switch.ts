@@ -10,8 +10,8 @@ export class SwitchAdapter {
 		this.component = component;
 		this.pad = padXY;
 		this.launchpad = launchpad;
-		launchpad.addCallback(padXY, (pressed) => {
-			if (!pressed) {
+		launchpad.addCallback(padXY, {
+			click: () => {
 				this.component.toggle();
 			}
 		});

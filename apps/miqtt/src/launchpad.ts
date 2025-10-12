@@ -1,10 +1,22 @@
 const midi = require("@julusian/midi");
 import { telegram } from "@ts-assistant/mqtt-assistant"
 
+type padConfig = {
+	alreadyPressed: boolean;
+	holdMode: boolean;
+	callbacks: {
+		click?: () => void;
+		hold?: () => void;
+		holdRelease?: () => void;
+		faderCallback?: (heightSelected: number) => void;
+		optionsCallback?: (optionSelected: number) => void;
+	}
+}
+
 export class Launchpad {
 	private output = new midi.Output();
 	private input = new midi.Input();
-	private callbacks: Record<number, Array<(...rest: any[]) => void>> = {};
+	private padConfigs: Record<number, padConfig> = {};
 	private firstPortcount: number;
 
 	constructor() {
@@ -47,23 +59,59 @@ export class Launchpad {
 		return (pad.y + 1) * 10 + pad.x + 1;
 	}
 
-	public addCallback(pad: PadXY, callback: (state?: boolean) => void) {
-		if (typeof this.callbacks[this.translate(pad)] === "undefined") {
-			this.callbacks[this.translate(pad)] = [callback];
-		} else {
-			this.callbacks[this.translate(pad)].push(callback);
+	public addCallback(pad: PadXY, callbacks: padConfig["callbacks"]) {
+		// if we already have a config for this pad, merge the callbacks
+		if (this.padConfigs[this.translate(pad)] !== undefined) {
+			this.padConfigs[this.translate(pad)].callbacks = {
+				...this.padConfigs[this.translate(pad)].callbacks,
+				...callbacks,
+			}
+			return
+		}
+
+		this.padConfigs[this.translate(pad)] = {
+			alreadyPressed: false,
+			holdMode: false,
+			callbacks: callbacks,
 		}
 	}
 
-	public clearCallbacks(pad: PadXY) {
-		delete this.callbacks[this.translate(pad)];
-	}
-
 	private routeInput(padN: number, pressed: boolean) {
-		if (this.callbacks[padN] !== undefined) {
-			this.callbacks[padN].forEach((callback) => {
-				callback(pressed);
-			});
+		if (padN % 10 === 9) {
+			// "fader" column input
+			Object.values(this.padConfigs)
+				.find(cfg => cfg.holdMode === true)
+				.callbacks.faderCallback(Math.trunc(padN / 10) - 1);
+			return
+		}
+
+		if (padN > 89) {
+			// "options" row input
+			Object.values(this.padConfigs)
+				.find(cfg => cfg.holdMode === true)
+				.callbacks.optionsCallback(padN % 10 - 1);
+			return
+		}
+
+		if (this.padConfigs[padN] !== undefined) {
+			this.padConfigs[padN].alreadyPressed
+			if (pressed) {
+				this.padConfigs[padN].alreadyPressed = true;
+				setTimeout(() => {
+					if (this.padConfigs[padN].alreadyPressed) {
+						this.padConfigs[padN].holdMode = true;
+						this.padConfigs[padN].callbacks.hold?.();
+					}
+				}, 200);
+			} else {
+				this.padConfigs[padN].alreadyPressed = false;
+				if (this.padConfigs[padN].holdMode) {
+					this.padConfigs[padN].callbacks.holdRelease?.();
+					this.padConfigs[padN].holdMode = false;
+				} else {
+					this.padConfigs[padN].callbacks.click?.()
+				}
+			}
 		}
 	}
 
@@ -76,6 +124,7 @@ export class Launchpad {
 			}
 		}
 	}
+
 	public faderOff() {
 		for (let i = 0; i < 8; i++) {
 			this.setSolidColor({ x: 8, y: i }, Color.OFF);
@@ -92,6 +141,19 @@ export class Launchpad {
 		for (let i = 0; i < 8; i++) {
 			this.setSolidColor({ x: i, y: 8 }, Color.OFF);
 		}
+	}
+
+	public textModeOn(text: string) {
+		text = text.replace("°", ".");
+		const textBytes = [240, 0, 32, 41, 2, 13, 7, 0, 7, 0, 37].concat(
+			Array.from(text).map(c => c.charCodeAt(0))
+		).concat([247])
+		console.log(textBytes,text);
+		this.output.sendMessage(textBytes);
+	}
+
+	public textModeOff() {
+		this.output.sendMessage([240, 0, 32, 41, 2, 13, 7, 247]);
 	}
 }
 

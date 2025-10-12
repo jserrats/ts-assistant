@@ -8,6 +8,8 @@ import {
 import { ButtonAdapter } from "./adapters/button";
 import { PublishMqttAdapter } from "./adapters/publish";
 import { SwitchAdapter } from "./adapters/switch";
+
+
 import { Launchpad } from "./launchpad";
 console.log("[i] Starting miqtt");
 
