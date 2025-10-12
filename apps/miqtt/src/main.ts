@@ -1,4 +1,3 @@
-import "dotenv/config";
 import { assistant, esphome, zigbee } from "@ts-assistant/mqtt-assistant";
 import { BinarySensorAdapter } from "./adapters/binary-sensor";
 import {
