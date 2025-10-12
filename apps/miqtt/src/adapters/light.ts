@@ -21,12 +21,12 @@ export class ZigbeeLightAdapter implements Adapter {
 			click: () => { this.component.toggle() },
 			hold: () => { this.enterHoldMode() },
 			holdRelease: () => { this.exitHoldMode() },
-			faderCallback: (heightSelected: number) => { 
+			faderCallback: (heightSelected: number) => {
 				this.component.setOn({ brightness: heightBrightness[heightSelected] });
 				this.launchpad.faderOn(heightSelected + 1);
-			},
+			}
 		});
-		
+
 		this.updatePadColor(component.state);
 		this.component.on(this.component.events.state, (state: boolean) => {
 			this.updatePadColor(state);
@@ -65,6 +65,16 @@ export class TemperatureLightZigbeeAdapter extends ZigbeeLightAdapter {
 	) {
 		super(component, launchpad, padXY);
 		this.component = component;
+
+		this.launchpad.addCallback(padXY, {
+			optionsCallback: (optionSelected: number) => {
+				if (optionSelected === 0) {
+					this.component.colorTemp.set(this.component.colorTemp.max)
+				} else {
+					this.component.colorTemp.set(this.component.colorTemp.min);
+				}
+			}
+		});
 	}
 
 	protected override enterHoldMode() {

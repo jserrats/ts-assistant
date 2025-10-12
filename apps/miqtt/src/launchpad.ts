@@ -5,17 +5,18 @@ type padConfig = {
 	alreadyPressed: boolean;
 	holdMode: boolean;
 	callbacks: {
-		click: () => void;
+		click?: () => void;
 		hold?: () => void;
 		holdRelease?: () => void;
 		faderCallback?: (heightSelected: number) => void;
+		optionsCallback?: (optionSelected: number) => void;
 	}
 }
 
 export class Launchpad {
 	private output = new midi.Output();
 	private input = new midi.Input();
-	private padConfigs: Record<number,padConfig> = {};
+	private padConfigs: Record<number, padConfig> = {};
 	private firstPortcount: number;
 
 	constructor() {
@@ -58,39 +59,39 @@ export class Launchpad {
 		return (pad.y + 1) * 10 + pad.x + 1;
 	}
 
-	// public addCallback(pad: PadXY, callback: (state?: boolean) => void) {
-	// 	if (typeof this.padConfigs[this.translate(pad)] === "undefined") {
-	// 		this.callbacks[this.translate(pad)] = [callback];
-	// 	} else {
-	// 		this.callbacks[this.translate(pad)].push(callback);
-	// 	}
-	// }
+	public addCallback(pad: PadXY, callbacks: padConfig["callbacks"]) {
+		// if we already have a config for this pad, merge the callbacks
+		if (this.padConfigs[this.translate(pad)] !== undefined) {
+			this.padConfigs[this.translate(pad)].callbacks = {
+				...this.padConfigs[this.translate(pad)].callbacks,
+				...callbacks,
+			}
+			return
+		}
 
-	public addCallback(pad: PadXY, callbacks: {
-		click: () => void;
-		hold?: () => void;
-		holdRelease?: () => void;
-		faderCallback?: (heightSelected: number) => void;
-	}) {
 		this.padConfigs[this.translate(pad)] = {
 			alreadyPressed: false,
 			holdMode: false,
 			callbacks: callbacks,
-		} as padConfig
+		}
 	}
 
-	// public clearCallbacks(pad: PadXY) {
-	// 	delete this.callbacks[this.translate(pad)];
-	// }
-
 	private routeInput(padN: number, pressed: boolean) {
-		if (padN%10 === 9){
+		if (padN % 10 === 9) {
 			// "fader" column input
 			Object.values(this.padConfigs)
 				.find(cfg => cfg.holdMode === true)
-				.callbacks.faderCallback(Math.trunc(padN / 10)-1);
+				.callbacks.faderCallback(Math.trunc(padN / 10) - 1);
 			return
-		} 
+		}
+
+		if (padN > 89) {
+			// "options" row input
+			Object.values(this.padConfigs)
+				.find(cfg => cfg.holdMode === true)
+				.callbacks.optionsCallback(padN % 10 - 1);
+			return
+		}
 
 		if (this.padConfigs[padN] !== undefined) {
 			this.padConfigs[padN].alreadyPressed
