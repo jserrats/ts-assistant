@@ -1,9 +1,9 @@
-FROM docker.io/node:24-alpine3.22
+FROM node:24
 
 WORKDIR /app
 
-RUN addgroup --system appuser && \
-adduser --system -G appuser appuser
+RUN useradd --system --user-group appuser
+RUN apt-get update && apt-get install -y libasound2 libasound2-dev gcc python3 alsa-utils
 
 COPY dist app/
 COPY package.json app/
