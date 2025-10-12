@@ -142,6 +142,19 @@ export class Launchpad {
 			this.setSolidColor({ x: i, y: 8 }, Color.OFF);
 		}
 	}
+
+	public textModeOn(text: string) {
+		text = text.replace("°", ".");
+		const textBytes = [240, 0, 32, 41, 2, 13, 7, 0, 7, 0, 37].concat(
+			Array.from(text).map(c => c.charCodeAt(0))
+		).concat([247])
+		console.log(textBytes,text);
+		this.output.sendMessage(textBytes);
+	}
+
+	public textModeOff() {
+		this.output.sendMessage([240, 0, 32, 41, 2, 13, 7, 247]);
+	}
 }
 
 export type PadXY = {
