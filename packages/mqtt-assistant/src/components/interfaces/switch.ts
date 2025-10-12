@@ -4,7 +4,7 @@ import type { BooleanSensor } from "./sensor.js";
 
 export interface Switch extends BooleanSensor {
 	get state(): boolean;
-	setOn(): void;
+	setOn(options?: Object): void;
 	setOff(): void;
 	toggle(): void;
 	newTimeStateEvent(

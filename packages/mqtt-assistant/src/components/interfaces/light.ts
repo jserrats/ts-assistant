@@ -7,6 +7,7 @@ export interface BrightLight extends Light {
 		max: number;
 		min: number;
 		set(level: number): void;
+		state: number | undefined;
 	};
 }
 
@@ -15,5 +16,6 @@ export interface TemperatureLight extends BrightLight {
 		max: number;
 		min: number;
 		set(level: number): void;
+		state: number | undefined;
 	};
 }

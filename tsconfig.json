@@ -11,6 +11,9 @@
     },
     {
       "path": "./apps/ts-warehouse"
+    },
+    {
+      "path": "./apps/miqtt"
     }
   ]
 }

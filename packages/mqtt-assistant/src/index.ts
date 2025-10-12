@@ -12,3 +12,4 @@ export {
 } from "./components/index.js";
 export { getEnvVariable } from "./environment.js";
 export { globalEventManager } from "./components/component.js";
+export { client as mqttClient } from "./mqtt.js";

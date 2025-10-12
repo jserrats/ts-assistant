@@ -1,0 +1,22 @@
+name: publish-miqtt
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'apps/miqtt/**'
+  pull_request:
+    paths:
+      - 'apps/miqtt/**'
+
+permissions:
+  actions: read
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    uses: ./.github/workflows/publish.yml
+    with:
+      app: miqtt
