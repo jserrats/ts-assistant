@@ -5,7 +5,7 @@ import { Adapter } from "./adapter";
 export class ButtonAdapter implements Adapter {
     pad: PadXY;
     launchpad: Launchpad;
-	component: esphome.ButtonESPHome;
+    component: esphome.ButtonESPHome;
 
     constructor(
         launchpad: Launchpad,
@@ -14,8 +14,8 @@ export class ButtonAdapter implements Adapter {
     ) {
         this.pad = padXY;
         this.launchpad = launchpad;
-        launchpad.addCallback(padXY, (pressed) => {
-            if (!pressed) {
+        launchpad.addCallback(padXY, {
+            click: () => {
                 button.press();
             }
         });
