@@ -1,7 +1,6 @@
 import type { LogLevel, TelegramMessage } from "./types.js";
 import { client } from "../../mqtt.js";
-import { dirname } from "path";
-
+import { hostname } from "os";
 class Telegram {
 	static base_topic = "notify/telegram";
 
@@ -41,7 +40,7 @@ class Telegram {
 		if (message instanceof Error) {
 			this.log(
 				{
-					message: `service:\`${dirname(import.meta.url.replace('file://', ''))}\``,
+					message: `Hostname: ${hostname()}`,
 					title: `${message.name} \`${message.message}\``,
 				} as TelegramMessage,
 				"error",
