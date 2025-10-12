@@ -17,6 +17,6 @@ export interface BooleanSensor extends Stateful {
 	get state(): boolean;
 }
 
-export interface StringSensor extends Stateful {
+export interface TextSensor extends Stateful {
 	get state(): string;
 }

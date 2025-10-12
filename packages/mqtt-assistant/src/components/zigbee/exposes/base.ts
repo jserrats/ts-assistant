@@ -3,7 +3,7 @@ import { StatefulComponent } from "../../component.js";
 import type {
 	BooleanSensor,
 	NumericSensor,
-	StringSensor,
+	TextSensor,
 } from "../../interfaces/sensor.js";
 import { telegram } from "../../telegram/index.js";
 import type { SwitchZigbee } from "../devices/switches/base.js";
@@ -50,7 +50,7 @@ export class ExposesNumber
 
 export class ExposesString
 	extends ExposesZigbee<string>
-	implements StringSensor { }
+	implements TextSensor { }
 
 export class ExposesBoolean
 	extends ExposesZigbee<boolean>
