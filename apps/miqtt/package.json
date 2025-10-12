@@ -16,7 +16,8 @@
           "format": [
             "cjs"
           ],
-          "bundle": false,
+          "bundle": true,
+          "thirdParty": true,
           "main": "apps/miqtt/src/main.ts",
           "tsConfig": "apps/miqtt/tsconfig.app.json",
           "assets": [
