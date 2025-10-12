@@ -18,6 +18,9 @@
           ],
           "bundle": true,
           "thirdParty": true,
+          "external": [
+            "@julusian/midi"
+          ],
           "main": "apps/miqtt/src/main.ts",
           "tsConfig": "apps/miqtt/tsconfig.app.json",
           "assets": [

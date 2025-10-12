@@ -1,4 +1,4 @@
-FROM node:20
+FROM node:24
 
 WORKDIR /app
 
@@ -8,5 +8,7 @@ RUN apt-get update && apt-get install -y libasound2 libasound2-dev gcc python3 a
 COPY dist app/
 COPY package.json app/
 #RUN chown -R appuser:appuser .
+
+RUN yarn add @julusian/midi
 
 CMD [ "node", "app/main.js" ]

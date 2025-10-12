@@ -1,0 +1,6 @@
+services:
+    miqtt:
+      build: .
+      devices:
+        - /dev/snd
+      env_file: .env
