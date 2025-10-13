@@ -30,3 +30,8 @@ client.on("message", (topic, message) => {
 		console.error(JSON.stringify(error));
 	}
 });
+
+export const mqttExport = {
+    client,
+    topics: topic,
+};

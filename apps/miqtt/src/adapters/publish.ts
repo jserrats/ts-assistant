@@ -1,4 +1,4 @@
-import { mqttClient } from "@ts-assistant/mqtt-assistant";
+import { mqtt } from "@ts-assistant/mqtt-assistant";
 import { Color, type Launchpad, type PadXY } from "../launchpad";
 
 export class PublishMqttAdapter {
@@ -6,14 +6,14 @@ export class PublishMqttAdapter {
 	launchpad: Launchpad;
 	constructor(
 		launchpad: Launchpad,
-		mqtt: { topic: string; payload: string },
+		mqttSettings: { topic: string; payload: string },
 		padXY: PadXY,
 	) {
 		this.pad = padXY;
 		this.launchpad = launchpad;
 		launchpad.addCallback(padXY, {
 			click: () => {
-				mqttClient.publish(mqtt.topic, mqtt.payload);
+				mqtt.client.publish(mqttSettings.topic, mqttSettings.payload);
 			}
 		});
 		this.launchpad.setSolidColor(this.pad, Color.WHITE);
