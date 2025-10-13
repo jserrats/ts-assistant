@@ -1,4 +1,4 @@
-name: publish-warehouse
+name: publish-all
 
 on:
   workflow_dispatch:
