@@ -11,6 +11,7 @@ import { SwitchAdapter } from "./adapters/switch";
 
 
 import { Launchpad } from "./launchpad";
+import { SensorAdapter } from "./adapters/sensor";
 console.log("[i] Starting miqtt");
 
 const launchpad = new Launchpad();
@@ -157,6 +158,11 @@ new SwitchAdapter(new esphome.LightESPHome("minimatrix", "clock"), launchpad, {
 	y: 6,
 });
 
+new SensorAdapter(new zigbee.sensors.air.WSD500A("livingroom_climate_sensor").temperature, launchpad, {
+	x: 2,
+	y: 6,
+});
+
 // bedroom
 new TemperatureLightZigbeeAdapter(
 	new zigbee.lights.LED1623G12("bedroom_left_light"),
@@ -183,5 +189,9 @@ new SwitchAdapter(
 );
 new SwitchAdapter(new zigbee.switches.XMSJ("bedroom_mood_light"), launchpad, {
 	x: 5,
+	y: 7,
+});
+new SensorAdapter(new zigbee.sensors.air.WSD500A("bedroom_climate_sensor").temperature, launchpad, {
+	x: 6,
 	y: 7,
 });
