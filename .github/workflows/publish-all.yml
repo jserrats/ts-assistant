@@ -1,0 +1,23 @@
+name: publish-warehouse
+
+on:
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+  packages: write
+
+jobs:
+  publish-warehouse:
+    uses: ./.github/workflows/publish.yml
+    with:
+      app: ts-warehouse
+  publish-automations:
+    uses: ./.github/workflows/publish.yml
+    with:
+      app: ts-automations
+  publish-miqtt:
+    uses: ./.github/workflows/publish.yml
+    with:
+      app: miqtt
