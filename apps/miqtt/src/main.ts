@@ -12,9 +12,15 @@ import { SwitchAdapter } from "./adapters/switch";
 
 import { Launchpad } from "./launchpad";
 import { SensorAdapter } from "./adapters/sensor";
+import { TextNotifier } from "./text-notifier";
 console.log("[i] Starting miqtt");
 
 const launchpad = new Launchpad();
+
+new TextNotifier(
+	new assistant.TextMQTTSensor("miqtt_notifier"),
+	launchpad,
+);
 
 // studio
 new TemperatureLightZigbeeAdapter(
