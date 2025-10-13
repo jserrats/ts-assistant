@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { router } from "../router.js";
-import { BASE_TOPIC } from "../topics.js";
+import { TIMER_TOPIC } from "../topics.js";
 import type { Trigger } from "../types.js";
 import { Component } from "./component.js";
 
@@ -19,7 +19,7 @@ export class Timer extends Component {
 	constructor(period: TimerLength, publish?: string) {
 		super();
 		this.setLength(period);
-		this.publishTopic = publish ? `${BASE_TOPIC}timer/${publish}` : "";
+		this.publishTopic = publish ? `${TIMER_TOPIC}${publish}` : "";
 	}
 	public start() {
 		this.internalCancel();
