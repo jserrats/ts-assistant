@@ -5,7 +5,7 @@ import type {
 	NumericSensor,
 	TextSensor,
 } from "../../interfaces/sensor.js";
-import { telegram } from "../../telegram/index.js";
+import { client as telegram } from "../../telegram/index.js";
 import type { SwitchZigbee } from "../devices/switches/base.js";
 import type { ZigbeeDevice } from "../zigbee.js";
 
