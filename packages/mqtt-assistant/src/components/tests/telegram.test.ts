@@ -1,7 +1,8 @@
 import { client } from "../../mqtt.js";
 import { router } from "../../router.js";
-import { telegram } from "../telegram/index.js";
+import { client as telegram } from "../telegram/index.js";
 import type { TelegramMessage } from "../telegram/types.js";
+import { TELEGRAM_OUTBOUND_TOPIC } from "../../topics.js";
 
 jest.mock("../../../src/mqtt", () => ({
 	client: {
@@ -19,7 +20,7 @@ describe("Telegram", () => {
 	it("should send a message", async () => {
 		telegram.send("test");
 		expect((client.publish as jest.Mock).mock.calls[0][0]).toStrictEqual(
-			"notify/telegram",
+			`${TELEGRAM_OUTBOUND_TOPIC}`,
 		);
 		expect((client.publish as jest.Mock).mock.calls[0][1]).toStrictEqual(
 			"test",
@@ -34,14 +35,14 @@ describe("Telegram", () => {
 	it("should send an error message", async () => {
 		telegram.error(new EvalError("test error"));
 		expect((client.publish as jest.Mock).mock.calls[0][0]).toStrictEqual(
-			"notify/telegram/error",
+			`${TELEGRAM_OUTBOUND_TOPIC}error`,
 		);
 	});
 
 	it("should send a message with log level", async () => {
 		telegram.log({ message: "test" }, "debug");
 		expect((client.publish as jest.Mock).mock.calls[0][0]).toStrictEqual(
-			"notify/telegram/debug",
+			`${TELEGRAM_OUTBOUND_TOPIC}debug`,
 		);
 
 		const inbound = JSON.parse(
@@ -52,9 +53,9 @@ describe("Telegram", () => {
 	});
 
 	it("should send a message with recipient option", async () => {
-		telegram.log({ message: "test1", recipient: "home" });
+		telegram.log({ message: "test1", recipient: "broadcast" });
 		expect((client.publish as jest.Mock).mock.calls[0][0]).toStrictEqual(
-			"notify/telegram",
+			`${TELEGRAM_OUTBOUND_TOPIC}`,
 		);
 
 		const inbound = JSON.parse(
@@ -62,6 +63,6 @@ describe("Telegram", () => {
 		) as TelegramMessage;
 
 		expect(inbound.message === "test1").toBeTruthy();
-		expect(inbound.recipient === "home").toBeTruthy();
+		expect(inbound.recipient === "broadcast").toBeTruthy();
 	});
 });

@@ -7,3 +7,5 @@ export const ZIGBEE2MQTT_TOPIC = "zigbee2mqtt/";
 export const ESPHOME_TOPIC = "esphome/";
 
 export const TELEGRAM_BASE_TOPIC = `telegram-bridge/`;
+export const TELEGRAM_OUTBOUND_TOPIC = `${TELEGRAM_BASE_TOPIC}outbound/`;
+export const TELEGRAM_INBOUND_TOPIC = `${TELEGRAM_BASE_TOPIC}inbound/`;

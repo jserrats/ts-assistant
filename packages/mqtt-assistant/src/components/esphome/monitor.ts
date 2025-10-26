@@ -2,7 +2,7 @@ import { router } from "../../router.js";
 import { ESPHOME_TOPIC } from "../../topics.js";
 import type { Trigger } from "../../types.js";
 import { Component } from "../component.js";
-import { telegram } from "../telegram/index.js";
+import { client as telegram } from "../telegram/index.js";
 
 export class MonitorESPHome extends Component {
 	offlineDevices: string[] = [];

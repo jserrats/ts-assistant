@@ -2,7 +2,7 @@ import { router } from "../../router.js";
 import { ZIGBEE2MQTT_TOPIC } from "../../topics.js";
 import type { Trigger } from "../../types.js";
 import { Component } from "../component.js";
-import { telegram } from "../telegram/index.js";
+import { client as telegram } from "../telegram/index.js";
 
 /**
  * For this to work is necessary to go to zigbee2mqtt > Settings > Availability > Enable

@@ -1,12 +1,13 @@
 import type { LogLevel, TelegramMessage } from "./types.js";
 import { client } from "../../mqtt.js";
 import { hostname } from "os";
-import { TELEGRAM_BASE_TOPIC } from "src/topics.js";
+import { TELEGRAM_OUTBOUND_TOPIC } from "../../topics.js";
 
 export class Telegram {
-	static base_topic = TELEGRAM_BASE_TOPIC;
+	static base_topic = TELEGRAM_OUTBOUND_TOPIC;
 
 	/**
+	 * @deprecated Use log() method instead as it provides more features and proper formatting
 	 * Basic method for sending error messages without formatting
 	 * @param string to be logged on telegram
 	 */
@@ -24,7 +25,7 @@ export class Telegram {
 
 		let topic = Telegram.base_topic;
 		if (logLevel !== undefined) {
-			topic = `${topic}/${logLevel}`;
+			topic = `${topic}${logLevel}`;
 		}
 		client.publish(topic, JSON.stringify(outMessage));
 	}

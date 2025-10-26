@@ -1,6 +1,6 @@
 import { client } from "../../../mqtt.js";
 import { router } from "../../../router.js";
-import { ESPHOME_TOPIC } from "../../../topics.js";
+import { ESPHOME_TOPIC, TELEGRAM_OUTBOUND_TOPIC } from "../../../topics.js";
 import { type InboundAvailability, MonitorESPHome } from "../monitor.js";
 
 jest.mock("../../../../src/mqtt", () => ({
@@ -28,7 +28,7 @@ describe("ESPHomeMonitor", () => {
 			"offline" as InboundAvailability,
 		);
 		expect((client.publish as jest.Mock).mock.calls[1][0]).toStrictEqual(
-			"notify/telegram/warning",
+			`${TELEGRAM_OUTBOUND_TOPIC}warning`,
 		);
 	});
 

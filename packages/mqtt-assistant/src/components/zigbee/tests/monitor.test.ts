@@ -2,6 +2,7 @@ import { client } from "../../../mqtt.js";
 import { router } from "../../../router.js";
 import { ZIGBEE2MQTT_TOPIC } from "../../../topics.js";
 import { ZigbeeMonitor } from "../monitor.js";
+import { TELEGRAM_OUTBOUND_TOPIC} from "../../../topics.js"
 
 jest.mock("../../../../src/mqtt", () => ({
 	client: {
@@ -27,7 +28,7 @@ describe("ZigbeeMonitor", () => {
 	it("should notify when a zigbee component disconnects", async () => {
 		client.publish(`${ZIGBEE2MQTT_TOPIC}test1/availability`, offlineString);
 		expect((client.publish as jest.Mock).mock.calls[1][0]).toStrictEqual(
-			"notify/telegram/warning",
+			`${TELEGRAM_OUTBOUND_TOPIC}warning`,
 		);
 	});
 

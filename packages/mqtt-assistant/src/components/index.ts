@@ -5,5 +5,5 @@ export * as interfaces from "./interfaces/index.js";
 export { Timer } from "./timer.js";
 export { Sun } from "./sun.js";
 export { Alarm } from "./alarm.js";
-export { telegram } from "./telegram/index.js";
+export * as telegram from "./telegram/index.js";
 export { Weather } from "./weather.js";
