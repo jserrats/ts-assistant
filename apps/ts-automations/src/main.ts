@@ -1,7 +1,7 @@
 import { zigbee, esphome, telegram, Timer, Sun, Alarm, assistant, globalEventManager } from "@ts-assistant/mqtt-assistant"
 
 console.log("[i] Starting Automations")
-telegram.info("Starting Automations")
+telegram.client.info("Starting Automations")
 
 
 // // Misc

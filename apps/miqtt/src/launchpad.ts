@@ -27,7 +27,7 @@ export class Launchpad {
 		console.log(this.firstPortcount);
 		setInterval(() => {
 			if (this.firstPortcount !== this.output.getPortCount()) {
-				telegram.log("Launchpad disconnected", "warning");
+				telegram.client.warning("Launchpad disconnected");
 				process.exit(1);
 			}
 		}, 1000);
