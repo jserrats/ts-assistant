@@ -7,7 +7,7 @@ const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 describe('Outbound', () => {
   let outbound: Outbound;
-  const mockPost = jest.fn();
+  const mockPost = jest.fn().mockResolvedValue({}); // Returns a resolved Promise
 
   beforeEach(() => {
     jest.clearAllMocks();

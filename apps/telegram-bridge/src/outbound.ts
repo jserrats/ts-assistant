@@ -12,11 +12,12 @@ export class Outbound {
             throw new Error("[!] Missing TELEGRAM_BOT_TOKEN")
         }
 
-        this.recipients = {
-            "admin": process.env.TELEGRAM_ADMIN_ID as string,
-            "user": process.env.TELEGRAM_USER_ID as string,
-            "broadcast": ""
-        }
+        const recipients: Record<telegram.TelegramRecipients, string> = {
+            admin: process.env.TELEGRAM_ADMIN_ID as string,
+            user: process.env.TELEGRAM_USER_ID as string,
+            broadcast: process.env.TELEGRAM_BROADCAST_ID as string,
+        };
+        this.recipients = recipients;
 
         this.instance = axios.create({
             baseURL: 'https://api.telegram.org/bot' + TELEGRAM_BOT_TOKEN,
@@ -41,7 +42,9 @@ export class Outbound {
             chat_id: recipientID,
             text: message,
             parse_mode: "MarkdownV2"
-        })
+        }).catch((error) => {
+            console.error("[!] Telegram sendMessage error:", error.message, error.response?.data);
+        });
 
     }
 
@@ -50,7 +53,8 @@ export class Outbound {
         "debug": "🧪",
         "info": "ℹ️",
         "warning": "⚠️",
-        "error": "🔴"
+        "error": "🔴",
+        "alarm": "🚨"
     }
 
 
@@ -59,7 +63,7 @@ export class Outbound {
         try {
             const logLevel = topic.split('/').pop() as telegram.LogLevel
             const messageObject = JSON.parse(message) as telegram.TelegramMessage
-            let text: string = `${Outbound.icons[logLevel]} *${logLevel.toUpperCase()}:* `
+            let text = `${Outbound.icons[logLevel]} *${logLevel.toUpperCase()}:* `
 
             if (messageObject.title !== undefined) {
                 text = `${text}*${messageObject.title}*\n`

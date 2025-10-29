@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'apps/miqtt/**'
+      - 'packages/mqtt-assistant/**'
   pull_request:
     paths:
       - 'apps/miqtt/**'

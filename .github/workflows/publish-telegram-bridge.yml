@@ -1,4 +1,4 @@
-name: publish-warehouse
+name: publish-telegram-bridge
 
 on:
   workflow_dispatch:
@@ -6,11 +6,11 @@ on:
     branches:
       - main
     paths:
-      - 'apps/ts-warehouse/**'
+      - 'apps/telegram-bridge/**'
       - 'packages/mqtt-assistant/**'
   pull_request:
     paths:
-      - 'apps/ts-warehouse/**'
+      - 'apps/telegram-bridge/**'
 
 permissions:
   actions: read
@@ -21,4 +21,4 @@ jobs:
   publish:
     uses: ./.github/workflows/publish.yml
     with:
-      app: ts-warehouse
+      app: telegram-bridge

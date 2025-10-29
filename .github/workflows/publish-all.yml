@@ -21,3 +21,7 @@ jobs:
     uses: ./.github/workflows/publish.yml
     with:
       app: miqtt
+  publish-telegram-bridge:
+    uses: ./.github/workflows/publish.yml
+    with:
+      app: telegram-bridge
