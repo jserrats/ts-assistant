@@ -16,7 +16,8 @@
           "format": [
             "cjs"
           ],
-          "bundle": false,
+          "bundle": true,
+          "thirdParty": true,
           "main": "apps/telegram-bridge/src/main.ts",
           "tsConfig": "apps/telegram-bridge/tsconfig.app.json",
           "assets": [
