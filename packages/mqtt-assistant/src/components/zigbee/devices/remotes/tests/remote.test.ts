@@ -4,7 +4,7 @@ import { RemoteE1812, RemoteE2002 } from "../remotes.js";
 
 jest.mock("../../../../../mqtt", () => ({
 	client: {
-		publish: jest.fn((newTopic: string, newPayload: string) => {}),
+		publish: jest.fn((newTopic: string, newPayload: string) => { }),
 	},
 }));
 
@@ -18,7 +18,20 @@ describe("Remote", () => {
 		router.route(remote.topic, JSON.stringify({ action: "on" }));
 		expect(mockCallback).toHaveBeenCalledTimes(1);
 	});
-
+	it("remote - should emit twice in when pressed twice", async () => {
+		const mockCallback = jest.fn();
+		const remote = new RemoteE1812("test");
+		expect(mockCallback).toHaveBeenCalledTimes(0);
+		remote.on(remote.button.click, () => {
+			mockCallback();
+			console.log(`[i] mockCallback called`);
+		});
+		expect(mockCallback).toHaveBeenCalledTimes(0);
+		router.route(remote.topic, JSON.stringify({ action: "on" }));
+		expect(mockCallback).toHaveBeenCalledTimes(1);
+		router.route(remote.topic, JSON.stringify({ action: "on" }));
+		expect(mockCallback).toHaveBeenCalledTimes(2);
+	});
 	it("remote - should not emit when action is empty", async () => {
 		const mockCallback = jest.fn();
 		const remote = new RemoteE1812("test");

@@ -28,6 +28,13 @@ export class ExposesSwitch extends ExposesBoolean {
 
 export class ExposesAction extends ExposesString {
 	static override exposes = "action";
+
+	// We override the setter to emit on state changes, even if the state is the same (unlike the base class behavior)
+	// This behavior is needed for proper remote button logic (each button press emits the same action string)
+	override set state(newState: string) {
+		this.setInternalState(newState);
+		this.emit(this.events.state, newState);
+	}
 }
 
 export class ExposesLinkQuality extends ExposesNumber {
@@ -102,7 +109,7 @@ export class ExposesContact extends ExposesBoolean {
 export class ExposesLearnIrCode extends ExposesSwitch {
 	static override exposes = "learn_ir_code";
 
-	override _updateExposes(message: Record<string,string>): boolean {
+	override _updateExposes(message: Record<string, string>): boolean {
 		return super._updateExposes(message, ExposesLearnIrCode.exposes);
 	}
 }

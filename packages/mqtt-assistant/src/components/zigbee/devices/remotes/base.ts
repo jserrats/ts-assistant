@@ -9,7 +9,7 @@ export class RemoteZigbee extends StatelessZigbeeDevice {
 
 	constructor(name: string) {
 		super(name);
-		this.action.on(this.action.events.state, (value) => {
+		this.action.on(this.action.events.state, (value:string) => {
 			for (const button in this.button) {
 				if (this.button[button].startsWith(value) && value !== "") {
 					this.emit(this.button[button]);

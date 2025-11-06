@@ -1,6 +1,6 @@
 import type { Switch } from "./switch.js";
 
-export interface Light extends Switch {}
+export type Light = Switch
 
 export interface BrightLight extends Light {
 	brightness: {

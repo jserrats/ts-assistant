@@ -18,10 +18,10 @@ export class FloatConveyor {
     constructor(sensor: interfaces.NumericSensor, pointName: string, tags: Record<string, string>, callback?: (sensor: interfaces.NumericSensor) => void) {
         globalEventManager.on(sensor.events.state,
             () => {
-                let point = new Point(pointName)
+                const point = new Point(pointName)
                     .tag("sensor", sensor.name)
                     .floatField(sensor.unit, sensor.state)
-                for (let item in tags) {
+                for (const item in tags) {
                     point.tag(item, tags[item])
                 }
 

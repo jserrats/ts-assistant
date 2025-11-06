@@ -32,7 +32,7 @@ export class SwitchZigbee
 		});
 	}
 
-	setOn(options?: Object) {
+	setOn(options?: object) {
 		this.set(true, options);
 	}
 	setOff() {
@@ -43,7 +43,7 @@ export class SwitchZigbee
 		this.set("toggle");
 	}
 
-	protected set(order: boolean | "toggle", options?: Object) {
+	protected set(order: boolean | "toggle", options?: object) {
 		if (typeof order === "boolean") {
 			this.client.publish(
 				this.setTopic,

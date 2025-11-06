@@ -82,6 +82,10 @@ export class StatefulComponent<T extends string | number | boolean | undefined>
 		}
 	}
 
+	protected setInternalState(state: T) {
+		this._state = state;
+	}
+
 	public newTimeStateEvent(time: TimerLength, logic: (state: T) => boolean) {
 		let timer: NodeJS.Timeout;
 		const newTimeoutEvent = randomUUID();

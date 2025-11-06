@@ -34,7 +34,7 @@ export interface ZigbeeDevice extends Eventful {
 	topic: string;
 	name: string;
 	linkquality: exposes.ExposesLinkQuality;
-	_updateExposes(message: Object): void;
+	_updateExposes(message: object): void;
 }
 
 export class StatelessZigbeeDevice extends Component implements ZigbeeDevice {
@@ -71,7 +71,7 @@ export class StatelessZigbeeDevice extends Component implements ZigbeeDevice {
 		});
 	}
 
-	_updateExposes(message: Object): void {
+	_updateExposes(message: object): void {
 		for (const key in this) {
 			if (this[key] instanceof ExposesZigbee) {
 				this[key]._updateExposes(message);
@@ -119,7 +119,7 @@ export class StatefulZigbeeDevice<T extends string | number | boolean | undefine
 	}
 
 	//TODO: deduplicate this code
-	_updateExposes(message: Object): void {
+	_updateExposes(message: object): void {
 		for (const key in this) {
 			if (this[key] instanceof ExposesZigbee) {
 				this[key]._updateExposes(message);
