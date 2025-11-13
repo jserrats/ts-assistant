@@ -24,7 +24,10 @@ export class Telegram {
 		}
 
 		outMessage.message = outMessage.message.replace("(", "\\(").replace(")", "\\)");
-		outMessage.title = outMessage.title.replace("(", "\\(").replace(")", "\\)");
+		
+		if( outMessage.title !== undefined ) {
+			outMessage.title = outMessage.title.replace("(", "\\(").replace(")", "\\)");
+		}
 
 		let topic = Telegram.base_topic;
 		if (logLevel !== undefined) {
