@@ -23,6 +23,9 @@ export class Telegram {
 			outMessage = message;
 		}
 
+		outMessage.message = outMessage.message.replace("(", "\\(").replace(")", "\\)");
+		outMessage.title = outMessage.title.replace("(", "\\(").replace(")", "\\)");
+
 		let topic = Telegram.base_topic;
 		if (logLevel !== undefined) {
 			topic = `${topic}${logLevel}`;
@@ -54,6 +57,7 @@ export class Telegram {
 		} else {
 			this.log(message, "error");
 		}
+		console.error(message);
 	}
 
 	alarm(message: TelegramMessage | string) {

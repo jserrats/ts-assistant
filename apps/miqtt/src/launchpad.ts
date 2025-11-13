@@ -40,7 +40,7 @@ export class Launchpad {
 				this.routeInput(message[1], message[2] === 127);
 
 			} catch (e) {
-				telegram.client.error("Error handling launchpad input: " + e);
+				telegram.client.error(e);
 			}
 		});
 
@@ -99,7 +99,7 @@ export class Launchpad {
 		}
 
 		if (this.padConfigs[padN] !== undefined) {
-			this.padConfigs[padN].alreadyPressed
+			//this.padConfigs[padN].alreadyPressed
 			if (pressed) {
 				this.padConfigs[padN].alreadyPressed = true;
 				setTimeout(() => {
