@@ -36,7 +36,12 @@ export class Launchpad {
 
 		this.input.on("message", (deltaTime: number, message: Array<number>) => {
 			console.log(`m: ${message} d: ${deltaTime}`);
-			this.routeInput(message[1], message[2] === 127);
+			try {
+				this.routeInput(message[1], message[2] === 127);
+
+			} catch (e) {
+				telegram.client.error("Error handling launchpad input: " + e);
+			}
 		});
 
 		this.setProgrammerMode();
@@ -148,7 +153,7 @@ export class Launchpad {
 		const textBytes = [240, 0, 32, 41, 2, 13, 7, 0, 7, 0, 37].concat(
 			Array.from(text).map(c => c.charCodeAt(0))
 		).concat([247])
-		console.log(textBytes,text);
+		console.log(textBytes, text);
 		this.output.sendMessage(textBytes);
 	}
 
