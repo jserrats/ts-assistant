@@ -1,5 +1,12 @@
+export var SERVICE_NAME = "undefined";
+
+if (process.env.SERVICE_NAME !== undefined) {
+	SERVICE_NAME = process.env.SERVICE_NAME;
+}
+
 export const BASE_TOPIC = "assistant/";
-export const STATUS_TOPIC = `${BASE_TOPIC}status`;
+export const STATUS_TOPIC = `${BASE_TOPIC}${SERVICE_NAME}/status`;
+
 export const ALARM_TOPIC = `${BASE_TOPIC}alarm/`;
 export const TIMER_TOPIC = `${BASE_TOPIC}timer/`;
 

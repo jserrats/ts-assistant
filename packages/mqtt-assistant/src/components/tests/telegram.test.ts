@@ -33,10 +33,12 @@ describe("Telegram", () => {
 	});
 
 	it("should send an error message", async () => {
+		const consoleSpy = jest.spyOn(console, "error").mockImplementation(() => {});
 		telegram.error(new EvalError("test error"));
 		expect((client.publish as jest.Mock).mock.calls[0][0]).toStrictEqual(
 			`${TELEGRAM_OUTBOUND_TOPIC}error`,
 		);
+		consoleSpy.mockRestore();
 	});
 
 	it("should send a message with log level", async () => {

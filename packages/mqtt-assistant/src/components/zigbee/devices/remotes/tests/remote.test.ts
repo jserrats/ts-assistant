@@ -24,7 +24,6 @@ describe("Remote", () => {
 		expect(mockCallback).toHaveBeenCalledTimes(0);
 		remote.on(remote.button.click, () => {
 			mockCallback();
-			console.log(`[i] mockCallback called`);
 		});
 		expect(mockCallback).toHaveBeenCalledTimes(0);
 		router.route(remote.topic, JSON.stringify({ action: "on" }));

@@ -52,7 +52,7 @@ export class Telegram {
 		if (message instanceof Error) {
 			this.log(
 				{
-					message: `Hostname: ${hostname()}`,
+					message: `Service: ${process.env.SERVICE_NAME || "unknown" }`,
 					title: `${message.name} \`${message.message}\``,
 				} as TelegramMessage,
 				"error",
