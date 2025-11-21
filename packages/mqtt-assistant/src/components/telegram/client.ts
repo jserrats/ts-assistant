@@ -1,6 +1,5 @@
 import type { LogLevel, TelegramMessage } from "./types.js";
 import { client } from "../../mqtt.js";
-import { hostname } from "os";
 import { TELEGRAM_OUTBOUND_TOPIC } from "../../topics.js";
 
 export class Telegram {
