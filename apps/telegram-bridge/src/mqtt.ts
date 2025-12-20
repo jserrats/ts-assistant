@@ -18,7 +18,7 @@ export function initMqtt(outbound: Outbound) {
     client.on("connect", () => {
         client.subscribe(config.topics.TELEGRAM_BASE_TOPIC + "#", (err) => {
             if (!err) {
-                client.publish(STATUS_TOPIC, "online");
+                client.publish(STATUS_TOPIC, "online", { retain: true });
             }
         });
     });
