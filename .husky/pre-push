@@ -1,0 +1,2 @@
+npx nx run-many --target=build --all --parallel
+npx nx run-many --target=docker:build --all --parallel
