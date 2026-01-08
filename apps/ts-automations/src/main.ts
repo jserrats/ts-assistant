@@ -73,7 +73,7 @@ shelvesLightTimer.on(shelvesLightTimer.events.timeout, () => {
     deskBacklight.setOff()
 })
 
-studioPresence.on(studioPresence.events.state, (state: boolean) => {
+studioPresence.on(studioPresence.occupancy.events.state, (state: boolean) => {
     if (state) {
         deskTimer.cancel();
         shelvesLightTimer.cancel()
