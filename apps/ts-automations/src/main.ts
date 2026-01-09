@@ -46,8 +46,7 @@ musicRemote.on(musicRemote.button.holdBottomClick, () => { musicMoodLight.setOn(
 
 
 // Studio
-//const studioPresence = new esphome.BinarySensorESPHome("datacenter", "studio_presence")\
-const studioPresence = new zigbee.sensors.presence.IH012_RT01("studio_presence")
+const studioPresence = new esphome.BinarySensorESPHome("datacenter", "studio_presence")
 const studioLight = new zigbee.lights.LED1623G12("studio_light")
 const studioFan = new zigbee.switches.E1603("studio_fan")
 const deskPower = new zigbee.switches.E1603("desk_power")
@@ -73,7 +72,7 @@ shelvesLightTimer.on(shelvesLightTimer.events.timeout, () => {
     deskBacklight.setOff()
 })
 
-studioPresence.on(studioPresence.occupancy.events.state, (state: boolean) => {
+studioPresence.on(studioPresence.events.state, (state: boolean) => {
     if (state) {
         deskTimer.cancel();
         shelvesLightTimer.cancel()
