@@ -87,6 +87,15 @@ studioPresence.on(studioPresence.events.state, (state: boolean) => {
     }
 })
 
+const studioAlarm = new esphome.ButtonESPHome("alarm", "short_flash")
+
+// Lobby
+const doorSensor = new esphome.BinarySensorESPHome("lobby", "main_door")
+
+doorSensor.on(doorSensor.events.state, (state: boolean) => {
+    studioAlarm.press()
+})
+
 // Bedroom
 const bedroomRemoteLeft = new zigbee.remotes.RemoteTS0044("bedroom_left_remote")
 const bedroomRemoteRight = new zigbee.remotes.RemoteTS0044("bedroom_right_remote")
