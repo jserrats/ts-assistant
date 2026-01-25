@@ -100,36 +100,36 @@ doorSensor.on(doorSensor.events.state, (state: boolean) => {
 const bedroomRemoteLeft = new zigbee.remotes.RemoteTS0044("bedroom_left_remote")
 const bedroomRemoteRight = new zigbee.remotes.RemoteTS0044("bedroom_right_remote")
 
-const bedroomFan = new zigbee.switches.E1603("bedroom_fan")
-const bedroomFanTimer = new Timer({ minutes: 30 }, "bedroom_fan")
+// const bedroomFan = new zigbee.switches.E1603("bedroom_fan")
+// const bedroomFanTimer = new Timer({ minutes: 30 }, "bedroom_fan")
 
-bedroomFanTimer.on(bedroomFanTimer.events.timeout, () => {
-    bedroomFan.setOff()
-})
+// bedroomFanTimer.on(bedroomFanTimer.events.timeout, () => {
+//     bedroomFan.setOff()
+// })
 
-globalEventManager.on(
-    [
-        bedroomRemoteLeft.button.bottomLeftHold,
-        bedroomRemoteRight.button.bottomLeftHold
-    ], () => { bedroomFanTimer.cancel() })
+// globalEventManager.on(
+//     [
+//         bedroomRemoteLeft.button.bottomLeftHold,
+//         bedroomRemoteRight.button.bottomLeftHold
+//     ], () => { bedroomFanTimer.cancel() })
 
-globalEventManager.on(
-    [
-        bedroomRemoteLeft.button.bottomLeftSingleClick,
-        bedroomRemoteRight.button.bottomLeftSingleClick
-    ], () => {
-        bedroomFan.toggle();
-        bedroomFanTimer.cancel()
-    })
+// globalEventManager.on(
+//     [
+//         bedroomRemoteLeft.button.bottomLeftSingleClick,
+//         bedroomRemoteRight.button.bottomLeftSingleClick
+//     ], () => {
+//         bedroomFan.toggle();
+//         bedroomFanTimer.cancel()
+//     })
 
-globalEventManager.on(
-    [
-        bedroomRemoteLeft.button.bottomLeftDoubleClick,
-        bedroomRemoteRight.button.bottomLeftDoubleClick
-    ], () => {
-        bedroomFan.setOn()
-        bedroomFanTimer.start()
-    })
+// globalEventManager.on(
+//     [
+//         bedroomRemoteLeft.button.bottomLeftDoubleClick,
+//         bedroomRemoteRight.button.bottomLeftDoubleClick
+//     ], () => {
+//         bedroomFan.setOn()
+//         bedroomFanTimer.start()
+//     })
 
 // lights
 
@@ -145,14 +145,14 @@ const nightStandLight = new esphome.LightESPHome("bedroom", "nightstand_led")
 
 globalEventManager.on(
     [
-        bedroomRemoteLeft.button.topLeftHold,
-        bedroomRemoteRight.button.topLeftHold
+        bedroomRemoteLeft.button.bottomRightHold,
+        bedroomRemoteRight.button.bottomRightHold
     ], () => { nightStandLight.setOff() })
 
 globalEventManager.on(
     [
-        bedroomRemoteRight.button.bottomRightSingleClick,
-        bedroomRemoteLeft.button.bottomRightSingleClick,
+        bedroomRemoteRight.button.topLeftSingleClick,
+        bedroomRemoteLeft.button.topLeftSingleClick,
         bedroomRemoteEntrance.button.topClick
     ],
     () => {
@@ -168,8 +168,8 @@ globalEventManager.on(
 
 globalEventManager.on(
     [
-        bedroomRemoteRight.button.topLeftSingleClick,
-        bedroomRemoteLeft.button.topLeftSingleClick,
+        bedroomRemoteRight.button.bottomRightSingleClick,
+        bedroomRemoteLeft.button.bottomRightSingleClick,
         bedroomRemoteEntrance.button.bottomClick
     ],
     () => {
@@ -184,8 +184,8 @@ globalEventManager.on(
 
 globalEventManager.on(
     [
-        bedroomRemoteRight.button.bottomRightDoubleClick,
-        bedroomRemoteLeft.button.bottomRightDoubleClick
+        bedroomRemoteRight.button.topLeftDoubleClick,
+        bedroomRemoteLeft.button.topLeftDoubleClick
     ], () => {
         bedroomLightLeft.setOn(warmLight)
         bedroomLightRight.setOn(warmLight)
@@ -193,11 +193,11 @@ globalEventManager.on(
 
 
 
-bedroomRemoteRight.on(bedroomRemoteRight.button.bottomRightHold, () => {
+bedroomRemoteRight.on(bedroomRemoteRight.button.topLeftHold, () => {
     bedroomLightLeft.setOff()
     bedroomLightRight.setOn(warmLight)
 })
-bedroomRemoteLeft.on(bedroomRemoteLeft.button.bottomRightHold, () => {
+bedroomRemoteLeft.on(bedroomRemoteLeft.button.topLeftHold, () => {
     bedroomLightRight.setOff()
     bedroomLightLeft.setOn(warmLight)
 })
@@ -211,8 +211,8 @@ mosquitoTimer.on(mosquitoTimer.events.timeout, () => { mosquitoRepellant.setOff(
 
 globalEventManager.on(
     [
-        bedroomRemoteRight.button.topRightSingleClick,
-        bedroomRemoteLeft.button.topRightSingleClick
+        bedroomRemoteRight.button.bottomLeftSingleClick,
+        bedroomRemoteLeft.button.bottomLeftSingleClick
     ], () => {
         if (mosquitoRepellant.state) {
             mosquitoRepellant.setOff()
