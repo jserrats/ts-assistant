@@ -71,10 +71,10 @@ export class StatelessZigbeeDevice extends Component implements ZigbeeDevice {
 		});
 	}
 
-	_updateExposes(message: object): void {
+	_updateExposes(message: object, packet: mqtt.IPublishPacket): void {
 		for (const key in this) {
 			if (this[key] instanceof ExposesZigbee) {
-				this[key]._updateExposes(message);
+				this[key]._updateExposes(message, packet);
 			}
 		}
 	}

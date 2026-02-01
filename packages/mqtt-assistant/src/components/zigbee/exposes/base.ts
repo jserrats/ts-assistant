@@ -8,6 +8,7 @@ import type {
 import { client as telegram } from "../../telegram/index.js";
 import type { SwitchZigbee } from "../devices/switches/base.js";
 import type { ZigbeeDevice } from "../zigbee.js";
+import { IPublishPacket } from "mqtt";
 
 export class ExposesZigbee<
 	T extends boolean | number | string | undefined,
@@ -27,7 +28,7 @@ export class ExposesZigbee<
 		}
 	}
 
-	_updateExposes(message: object | undefined): void {
+	_updateExposes(message: object | undefined, packet?: IPublishPacket): void {
 		if (message === undefined) {
 			this.state = undefined;
 			return;

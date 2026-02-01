@@ -5,11 +5,12 @@ import {
 	ExposesSeteableNumber,
 	ExposesString,
 } from "./base.js";
+import { IPublishPacket } from "mqtt";
 
 export class ExposesSwitch extends ExposesBoolean {
 	static override exposes = "state";
 
-	override _updateExposes(message: object, exposeName?: string): boolean {
+	override _updateExposes(message: object, packet?: IPublishPacket, exposeName?: string): boolean {
 		let tmp: boolean;
 		if (exposeName == undefined) {
 			exposeName = ExposesSwitch.exposes; //state
@@ -36,9 +37,13 @@ export class ExposesAction extends ExposesString {
 		this.emit(this.events.state, newState);
 	}
 
-	override _updateExposes(message: object): void {
+	override _updateExposes(message: object, packet?): void {
 		if (message === undefined) {
 			this.state = undefined;
+			return;
+		}
+		if (packet !== undefined && packet.retain === true) {
+			// ignore retained messages
 			return;
 		}
 		if (this.state === undefined || message[this._exposes] !== this.state) {
@@ -121,7 +126,7 @@ export class ExposesLearnIrCode extends ExposesSwitch {
 	static override exposes = "learn_ir_code";
 
 	override _updateExposes(message: object): boolean {
-		return super._updateExposes(message, ExposesLearnIrCode.exposes);
+		return super._updateExposes(message, undefined, ExposesLearnIrCode.exposes);
 	}
 }
 

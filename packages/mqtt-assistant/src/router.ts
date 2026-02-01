@@ -21,7 +21,7 @@ class Router {
 		}
 	}
 
-	route(newTopic: string, newPayload: string, packet?: mqtt.IPublishPacket) {
+	route(newTopic: string, newPayload: string, packet?: { retain: boolean }) {
 		this.routes.forEach((automation: Automation) => {
 			if (
 				wcmatch(automation.trigger.topic)(newTopic) &&
@@ -30,7 +30,7 @@ class Router {
 				automation.callback({
 					topic: newTopic,
 					payload: newPayload,
-				}, packet);
+				}, packet as mqtt.IPublishPacket);
 			}
 		});
 	}

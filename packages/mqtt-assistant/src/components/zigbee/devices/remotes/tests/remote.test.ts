@@ -4,7 +4,7 @@ import { RemoteE1812, RemoteE2002 } from "../remotes.js";
 
 jest.mock("../../../../../mqtt", () => ({
 	client: {
-		publish: jest.fn((newTopic: string, newPayload: string) => { }),
+		publish: jest.fn((newTopic: string, newPayload: string) => {return;}),
 	},
 }));
 
@@ -48,4 +48,14 @@ describe("Remote", () => {
 		router.route(testRemote.topic, JSON.stringify({ action: "on" }));
 		expect(mockCallback).toHaveBeenCalledTimes(1);
 	});
+	it("remote - should not emit when trigger message is retained", async () => {
+		const mockCallback = jest.fn();
+		const remote = new RemoteE1812("test");
+		remote.on(remote.button.click, () => {
+			mockCallback();
+		});
+		router.route(remote.topic, JSON.stringify({ action: "on" }), { retain: true });
+		expect(mockCallback).toHaveBeenCalledTimes(0);
+	});
+
 });
