@@ -1,3 +1,5 @@
+import mqtt from "mqtt";
+import { Message } from "./router.js";
 export type Trigger = {
 	topic: string;
 	payload: string;
@@ -5,10 +7,12 @@ export type Trigger = {
 
 export type Automation = {
 	trigger: Trigger;
-	callback: CallableFunction;
+	callback: Callback;
 };
 
 export type AutomationMultipleTriggers = {
 	trigger: Trigger[];
-	callback: CallableFunction;
+	callback: Callback;
 };
+
+type Callback = (args: Message, packet?: mqtt.IPublishPacket) => void;

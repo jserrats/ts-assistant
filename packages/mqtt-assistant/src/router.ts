@@ -3,6 +3,7 @@ import {
 	type Automation,
 	type AutomationMultipleTriggers
 } from "./types.js";
+import mqtt from "mqtt";
 
 class Router {
 	private routes: Automation[] = [];
@@ -20,7 +21,7 @@ class Router {
 		}
 	}
 
-	route(newTopic: string, newPayload: string) {
+	route(newTopic: string, newPayload: string, packet?: mqtt.IPublishPacket) {
 		this.routes.forEach((automation: Automation) => {
 			if (
 				wcmatch(automation.trigger.topic)(newTopic) &&
@@ -29,10 +30,14 @@ class Router {
 				automation.callback({
 					topic: newTopic,
 					payload: newPayload,
-				});
+				}, packet);
 			}
 		});
 	}
 }
 
 export const router = new Router();
+export type Message = {
+	topic?: string,
+	payload: string,
+}

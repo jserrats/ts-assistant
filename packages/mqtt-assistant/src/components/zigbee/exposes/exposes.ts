@@ -9,7 +9,7 @@ import {
 export class ExposesSwitch extends ExposesBoolean {
 	static override exposes = "state";
 
-	override _updateExposes(message: Record<string, string>, exposeName?: string): boolean {
+	override _updateExposes(message: object, exposeName?: string): boolean {
 		let tmp: boolean;
 		if (exposeName == undefined) {
 			exposeName = ExposesSwitch.exposes; //state
@@ -34,6 +34,17 @@ export class ExposesAction extends ExposesString {
 	override set state(newState: string) {
 		this.setInternalState(newState);
 		this.emit(this.events.state, newState);
+	}
+
+	override _updateExposes(message: object): void {
+		if (message === undefined) {
+			this.state = undefined;
+			return;
+		}
+		if (this.state === undefined || message[this._exposes] !== this.state) {
+			this.state = message[this._exposes];
+			return;
+		}
 	}
 }
 
@@ -109,7 +120,7 @@ export class ExposesContact extends ExposesBoolean {
 export class ExposesLearnIrCode extends ExposesSwitch {
 	static override exposes = "learn_ir_code";
 
-	override _updateExposes(message: Record<string, string>): boolean {
+	override _updateExposes(message: object): boolean {
 		return super._updateExposes(message, ExposesLearnIrCode.exposes);
 	}
 }

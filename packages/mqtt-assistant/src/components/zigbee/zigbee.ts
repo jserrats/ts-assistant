@@ -1,11 +1,11 @@
 import { ZIGBEE2MQTT_TOPIC } from "../../topics.js";
-
-import { router } from "../../router.js";
+import { Message, router } from "../../router.js";
 import type { Trigger } from "../../types.js";
 import { Component, StatefulComponent } from "../component.js";
 import type { Eventful } from "../interfaces/eventful.js";
 import { exposes } from "./exposes/index.js";
 import { ExposesNumber, ExposesZigbee } from "./exposes/base.js";
+import mqtt from "mqtt";
 
 const zigbeeDeviceConstructor = (device: ZigbeeDevice, name: string) => {
 	device.name = name;
@@ -13,9 +13,9 @@ const zigbeeDeviceConstructor = (device: ZigbeeDevice, name: string) => {
 
 	router.addAutomation({
 		trigger: { topic: device.topic, payload: "*" },
-		callback: (message: Trigger) => {
+		callback: (message: Message, packet) => {
 			try {
-				device._updateExposes(JSON.parse(message.payload));
+				device._updateExposes(JSON.parse(message.payload), packet);
 			} catch (error) {
 				let error_message = "Unknown Error";
 				if (error instanceof Error) error_message = error.message;
@@ -34,7 +34,7 @@ export interface ZigbeeDevice extends Eventful {
 	topic: string;
 	name: string;
 	linkquality: exposes.ExposesLinkQuality;
-	_updateExposes(message: object): void;
+	_updateExposes(message: object, packet?: mqtt.IPublishPacket): void;
 }
 
 export class StatelessZigbeeDevice extends Component implements ZigbeeDevice {

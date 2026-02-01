@@ -23,9 +23,9 @@ client.on("connect", () => {
 	client.subscribe(`${topic.BASE_TOPIC}#`);
 });
 
-client.on("message", (topic, message) => {
+client.on("message", (topic, message,packet) => {
 	try {
-		router.route(topic, message.toString());
+		router.route(topic, message.toString(), packet);
 	} catch (error) {
 		console.error(JSON.stringify(error));
 	}
