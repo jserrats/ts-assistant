@@ -1,14 +1,15 @@
 FROM node:20-bookworm
 
-WORKDIR /app
-
 #RUN useradd --system --user-group appuser
 RUN apt-get update && apt-get install -y libasound2 libasound2-dev gcc python3 alsa-utils
 
-COPY dist app/
-COPY package.json app/
-#RUN chown -R appuser:appuser .
+COPY . app/
 
-RUN yarn add @julusian/midi
+WORKDIR /app
 
-CMD [ "node", "app/main.js" ]
+RUN yarn install --frozen-lockfile
+RUN ls -la && pwd
+RUN npx nx build miqtt
+
+
+CMD [ "node", "apps/miqtt/dist/main.js" ]

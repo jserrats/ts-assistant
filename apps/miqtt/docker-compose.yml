@@ -1,6 +1,8 @@
 services:
     miqtt:
-      build: .
+      build: 
+        context: ../../
+        dockerfile: apps/miqtt/Dockerfile
       devices:
         - /dev/snd
       env_file: .env
