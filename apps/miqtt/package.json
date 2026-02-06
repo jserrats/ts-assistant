@@ -4,6 +4,12 @@
   "private": true,
   "nx": {
     "targets": {
+      "docker:build": {
+        "options": {
+          "cwd": ".",
+          "command": "docker build . -f apps/miqtt/Dockerfile --tag apps-miqtt"
+        }
+      },
       "build": {
         "executor": "@nx/esbuild:esbuild",
         "outputs": [
