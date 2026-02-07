@@ -1,7 +1,7 @@
-FROM node:20-bookworm
+FROM arm32v7/node:20-alpine
 
 #RUN useradd --system --user-group appuser
-RUN apt-get update && apt-get install -y libasound2 libasound2-dev gcc python3 alsa-utils
+RUN apk add --no-cache libasound alsa-lib-dev gcc g++ make python3
 
 COPY . app/
 
