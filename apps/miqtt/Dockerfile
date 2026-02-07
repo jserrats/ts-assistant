@@ -1,7 +1,8 @@
-FROM arm32v7/node:20-alpine
+ARG BASE_IMAGE=node:20-alpine
+FROM ${BASE_IMAGE}
 
 #RUN useradd --system --user-group appuser
-RUN apk add --no-cache libasound alsa-lib-dev gcc g++ make python3
+RUN apk add --no-cache alsa-lib alsa-lib-dev build-base python3
 
 COPY . app/
 
