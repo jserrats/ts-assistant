@@ -4,7 +4,9 @@ After=multi-user.target
 
 [Service]
 Type=idle
-ExecStart=env MQTT_SERVER=mqtt.jserrats.xyz node /home/jserrats/apps/miqtt/dist/main.js &
+User=jserrats
+ExecStart=/home/jserrats/.nvm/versions/node/v20.20.0/bin/node /home/jserrats/apps/miqtt/dist/main.js
+Environment=MQTT_SERVER=mqtt.jserrats.xyz
 
 [Install]
 WantedBy=multi-user.target
