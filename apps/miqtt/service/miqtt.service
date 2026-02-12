@@ -1,0 +1,10 @@
+[Unit]
+Description=miqtt
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=env MQTT_SERVER=mqtt.jserrats.xyz node /home/jserrats/apps/miqtt/dist/main.js &
+
+[Install]
+WantedBy=multi-user.target
