@@ -7,9 +7,9 @@ Type=idle
 User=jserrats
 WorkingDirectory=/home/jserrats/ts-assistant/apps/miqtt
 Environment=PATH=/home/jserrats/.nvm/versions/node/v20.20.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
-ExecStartPre=/usr/bin/git -C /home/jserrats/code/ts-assistant pull
-ExecStartPre=/usr/bin/yarn install --cwd /home/jserrats/code/ts-assistant
-ExecStartPre=/usr/bin/npx nx build miqtt --cwd /home/jserrats/code/ts-assistant
+ExecStartPre=/usr/bin/git -C /home/jserrats/ts-assistant pull
+ExecStartPre=/usr/bin/yarn install --cwd /home/jserrats/ts-assistant
+ExecStartPre=/usr/bin/npx nx build miqtt --cwd /home/jserrats/ts-assistant
 ExecStart=/home/jserrats/.nvm/versions/node/v20.20.0/bin/node /home/jserrats/ts-assistant/apps/miqtt/dist/main.js
 Environment=MQTT_SERVER=mqtt.jserrats.xyz
 
