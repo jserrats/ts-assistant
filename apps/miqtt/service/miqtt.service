@@ -5,7 +5,7 @@ After=multi-user.target
 [Service]
 Type=idle
 User=jserrats
-WorkingDirectory=/home/jserrats/ts-assistant/apps/miqtt
+WorkingDirectory=/home/jserrats/ts-assistant
 Environment=PATH=/home/jserrats/.nvm/versions/node/v20.20.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
 ExecStartPre=/usr/bin/git -C /home/jserrats/ts-assistant pull
 ExecStartPre=bash -c 'yarn install --cwd /home/jserrats/ts-assistant'
