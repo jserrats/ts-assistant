@@ -5,8 +5,11 @@ After=multi-user.target
 [Service]
 Type=idle
 User=jserrats
-WorkingDirectory=/home/jserrats/ts-assistant/apps/miqtt
-ExecStart=/home/jserrats/.nvm/versions/node/v20.20.0/bin/node /home/jserrats/ts-assistant/apps/miqtt/dist/main.js
+WorkingDirectory=$HOME/ts-assistant/apps/miqtt
+ExecStartPre=/usr/bin/git -C $HOME/ts-assistant pull
+ExecStartPre=$HOME/.nvm/versions/node/v20.20.0/bin/yarn install --cwd $HOME/ts-assistant
+ExecStartPre=$HOME/.nvm/versions/node/v20.20.0/bin/npx nx build miqtt --cwd $HOME/code/ts-assistant
+ExecStart=$HOME/.nvm/versions/node/v20.20.0/bin/node $HOME/ts-assistant/apps/miqtt/dist/main.js
 Environment=MQTT_SERVER=mqtt.jserrats.xyz
 
 [Install]
