@@ -159,7 +159,7 @@ new SwitchAdapter(
 	launchpad,
 	{ x: 0, y: 6 },
 );
-new SwitchAdapter(new esphome.LightESPHome("minimatrix", "clock"), launchpad, {
+new SwitchAdapter(new esphome.LightESPHome("0f-test-esp-w1", "clock"), launchpad, {
 	x: 1,
 	y: 6,
 });
@@ -180,10 +180,7 @@ new TemperatureLightZigbeeAdapter(
 	launchpad,
 	{ x: 1, y: 7 },
 );
-new SwitchAdapter(new zigbee.switches.E1603("bedroom_fan"), launchpad, {
-	x: 2,
-	y: 7,
-});
+
 new SwitchAdapter(new zigbee.switches.E1603("mosquito_power"), launchpad, {
 	x: 3,
 	y: 7,
